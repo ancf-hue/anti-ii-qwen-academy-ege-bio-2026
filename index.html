@@ -1,0 +1,2559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anti-AI Qwen Academy | Biology EGE-2026</title>
+  <meta
+    name="description"
+    content="Free offline trainer and checklist for EGE Biology 2026: exam structure, 21 Part 1 tasks, 7 Part 2 tasks, criteria, preparation plan."
+  />
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+  <style>
+    * { box-sizing: border-box; }
+
+    :root {
+      --bg: #070b18;
+      --card: rgba(18, 26, 51, 0.72);
+      --card-soft: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.1);
+      --text: #e8ecff;
+      --muted: #9aa4c8;
+      --accent: #22d3ee;
+      --violet: #7c3aed;
+      --green: #22c55e;
+      --red: #ef4444;
+      --orange: #f59e0b;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124, 58, 237, 0.22), transparent 30%),
+        radial-gradient(circle at top right, rgba(34, 211, 238, 0.18), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100vh;
+    }
+
+    .container { width: min(1120px, 92%); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(7, 11, 24, 0.82);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+      flex-wrap: wrap;
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+
+    .brand-logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      object-fit: cover;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 12px 30px rgba(34, 211, 238, 0.18);
+      flex: 0 0 auto;
+    }
+
+    .brand strong { display: block; font-size: 16px; line-height: 1.2; }
+    .brand small { color: var(--muted); font-size: 12px; }
+
+    nav { display: flex; gap: 18px; flex-wrap: wrap; }
+
+    nav a {
+      color: #cfd6ff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    nav a:hover { color: white; }
+
+    /* New Controls Area */
+    .top-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-left: auto;
+    }
+
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: 850;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    .lang-btn:hover { background: rgba(255, 255, 255, 0.12); }
+
+    .lang-option { opacity: 0.65; }
+    .lang-option.active { opacity: 1; color: white; }
+    .lang-sep { opacity: 0.45; }
+
+    .timer-widget {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 6px 8px;
+    }
+
+    .timer-widget select {
+      background: rgba(7, 11, 24, 0.55);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+      padding: 6px 8px;
+      font: inherit;
+      font-size: 12px;
+      max-width: 160px;
+    }
+
+    #timerDisplay {
+      font-variant-numeric: tabular-nums;
+      font-weight: 900;
+      min-width: 88px;
+      text-align: center;
+      color: white;
+    }
+
+    .timer-btn {
+      border: 0;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 6px 9px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.15s ease;
+    }
+
+    .timer-btn:hover { background: rgba(255, 255, 255, 0.14); }
+
+    .timer-widget.warning #timerDisplay { color: var(--orange); }
+    .timer-widget.danger #timerDisplay {
+      color: var(--red);
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.55; }
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      padding: 48px 0 28px;
+      align-items: start;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(124, 58, 237, 0.18);
+      border: 1px solid rgba(124, 58, 237, 0.35);
+      color: #d8ccff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    h1 { font-size: clamp(34px, 5vw, 58px); line-height: 1.05; margin: 16px 0; }
+    h1 .accent { color: var(--accent); }
+
+    .lead { color: #b8c1e6; max-width: 72ch; font-size: 17px; }
+
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+
+    .btn {
+      border: 0;
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-weight: 850;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      background: linear-gradient(135deg, var(--violet), var(--accent));
+      color: white;
+      box-shadow: 0 12px 30px rgba(34, 211, 238, 0.18);
+      font-size: 15px;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #eaf0ff;
+      box-shadow: none;
+    }
+
+    .btn.small { padding: 10px 14px; font-size: 14px; border-radius: 12px; }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(124, 58, 237, 0.16), rgba(6, 182, 212, 0.10));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .panel h3 { margin: 0 0 14px; font-size: 20px; }
+
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
+
+    .metric {
+      background: rgba(7, 11, 24, 0.35);
+      border-radius: 16px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      min-height: 82px;
+    }
+
+    .metric strong { display: block; font-size: 22px; color: white; margin-bottom: 4px; }
+    .metric span { color: var(--muted); font-size: 12px; }
+
+    progress {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      appearance: none;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      margin-top: 10px;
+    }
+
+    progress::-webkit-progress-bar { background: rgba(255, 255, 255, 0.1); border-radius: 999px; }
+    progress::-webkit-progress-value { background: linear-gradient(90deg, var(--violet), var(--accent)); border-radius: 999px; }
+    progress::-moz-progress-bar { background: var(--accent); border-radius: 999px; }
+
+    .note { color: var(--muted); font-size: 13px; margin-top: 12px; }
+
+    section { padding: 28px 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    h2 { font-size: clamp(26px, 3vw, 36px); margin: 0; line-height: 1.15; }
+    .sub { color: var(--muted); margin: 6px 0 0; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 16px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .card h3 { margin: 0 0 10px; font-size: 20px; }
+    .card p { color: #b8c1e6; margin: 0 0 16px; }
+
+    .warn-card {
+      border-color: rgba(245, 158, 11, 0.35);
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.10), rgba(18, 26, 51, 0.72));
+    }
+
+    .danger-card {
+      border-color: rgba(239, 68, 68, 0.35);
+      background: linear-gradient(180deg, rgba(239, 68, 68, 0.10), rgba(18, 26, 51, 0.72));
+    }
+
+    .success-card {
+      border-color: rgba(34, 197, 94, 0.35);
+      background: linear-gradient(180deg, rgba(34, 197, 94, 0.10), rgba(18, 26, 51, 0.72));
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 850;
+      margin-bottom: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #dbe3ff;
+    }
+
+    .tag.red { background: rgba(239, 68, 68, 0.14); border-color: rgba(239, 68, 68, 0.35); color: #ffd7d7; }
+    .tag.green { background: rgba(34, 197, 94, 0.14); border-color: rgba(34, 197, 94, 0.35); color: #d7ffe6; }
+    .tag.orange { background: rgba(245, 158, 11, 0.14); border-color: rgba(245, 158, 11, 0.35); color: #fff0cc; }
+
+    .mini-list { margin: 0; padding-left: 18px; color: #c8d2f5; }
+    .mini-list li { margin: 7px 0; }
+
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      padding: 14px;
+      background: var(--card-soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      align-items: center;
+    }
+
+    .filter-bar span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      margin-right: 6px;
+    }
+
+    .filter-btn {
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      transition: 0.15s ease;
+    }
+
+    .filter-btn:hover { background: rgba(255, 255, 255, 0.1); }
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--violet), var(--accent));
+      border-color: transparent;
+      color: white;
+    }
+
+    .question-block {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 26px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+    }
+
+    .q-number {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(124, 58, 237, 0.22);
+      border: 1px solid rgba(124, 58, 237, 0.45);
+      color: #d8ccff;
+      font-size: 13px;
+      font-weight: 850;
+      margin-bottom: 14px;
+    }
+
+    .q-number.bot {
+      background: rgba(34, 197, 94, 0.18);
+      border-color: rgba(34, 197, 94, 0.45);
+      color: #d7ffe6;
+    }
+
+    .q-number.zoo {
+      background: rgba(239, 68, 68, 0.18);
+      border-color: rgba(239, 68, 68, 0.45);
+      color: #ffd7d7;
+    }
+
+    .q-number.hum {
+      background: rgba(245, 158, 11, 0.18);
+      border-color: rgba(245, 158, 11, 0.45);
+      color: #fff0cc;
+    }
+
+    .q-number.eco {
+      background: rgba(34, 211, 238, 0.18);
+      border-color: rgba(34, 211, 238, 0.45);
+      color: #cffafe;
+    }
+
+    .q-part { margin-bottom: 18px; }
+
+    .q-part-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .q-text {
+      font-size: 17px;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.5;
+      color: #eaf0ff;
+      white-space: pre-wrap;
+    }
+
+    .q-info {
+      background: rgba(124, 58, 237, 0.10);
+      border-left: 4px solid var(--violet);
+      border-radius: 0 14px 14px 0;
+      padding: 16px 18px;
+      margin: 18px 0;
+      color: #dbe3ff;
+      font-size: 15px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    .q-info strong { color: #ffffff; }
+
+    .q-trainer-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .options { display: grid; gap: 10px; }
+
+    .option {
+      text-align: left;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 14px 16px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: 0.15s ease;
+      white-space: pre-wrap;
+    }
+
+    .option:hover:not(:disabled) { background: rgba(255, 255, 255, 0.1); }
+    .option.correct { background: rgba(34, 197, 94, 0.18); border-color: rgba(34, 197, 94, 0.55); }
+    .option.wrong { background: rgba(239, 68, 68, 0.18); border-color: rgba(239, 68, 68, 0.55); }
+    .option:disabled { cursor: default; }
+
+    .result-block {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 14px;
+    }
+
+    .result-block.correct {
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+    }
+
+    .result-block.wrong {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+    }
+
+    .verdict {
+      font-size: 17px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .verdict.correct { color: #22c55e; }
+    .verdict.wrong { color: #ef4444; }
+
+    .result-row {
+      margin: 6px 0;
+      color: #d7e6ff;
+      font-size: 15px;
+    }
+
+    .result-row strong { color: #ffffff; }
+
+    .source-row {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.18);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .source-row strong { color: #dbe3ff; }
+
+    .summary {
+      background: linear-gradient(180deg, rgba(34, 197, 94, 0.14), rgba(18, 26, 51, 0.72));
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      border-radius: 24px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .summary .score { font-size: 48px; font-weight: 950; color: #fff; }
+
+    .reset-bar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      justify-content: flex-end;
+    }
+
+    .checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+
+    .check-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: var(--card-soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      transition: 0.15s ease;
+    }
+
+    .check-item input {
+      width: 20px;
+      height: 20px;
+      margin-top: 3px;
+      accent-color: var(--accent);
+      flex: 0 0 auto;
+    }
+
+    .check-item label { cursor: pointer; color: #dbe3ff; }
+
+    .check-item.done {
+      opacity: 0.72;
+      background: rgba(34, 211, 238, 0.08);
+      border-color: rgba(34, 211, 238, 0.25);
+    }
+
+    .check-item.done label { text-decoration: line-through; color: #aab5dc; }
+
+    .plan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+
+    .day {
+      background: var(--card-soft);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      min-height: 112px;
+    }
+
+    .day b {
+      display: block;
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+    }
+
+    .day.critical {
+      border-color: rgba(239, 68, 68, 0.35);
+      background: rgba(239, 68, 68, 0.08);
+    }
+
+    .manual-card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 22px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .manual-card h3 { margin: 0 0 10px; font-size: 20px; }
+    .manual-card p { color: #b8c1e6; margin: 8px 0; white-space: pre-wrap; }
+
+    .answer-hint {
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(34, 197, 94, 0.10);
+      border: 1px solid rgba(34, 197, 94, 0.28);
+      color: #d7ffe6;
+      font-size: 14px;
+    }
+
+    .check-input {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.18);
+    }
+
+    .check-input label {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .check-input input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font-size: 15px;
+      font-family: inherit;
+    }
+
+    .check-input input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(34, 211, 238, 0.06);
+    }
+
+    .support-card {
+      background: linear-gradient(180deg, rgba(124, 58, 237, 0.18), rgba(34, 211, 238, 0.10));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .support-card h2 { margin-bottom: 10px; }
+    .support-card p { margin: 10px 0; color: #dbe3ff; }
+
+    .phone {
+      color: white;
+      font-weight: 900;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.45);
+    }
+
+    .phone:hover { color: var(--accent); }
+
+    .copy-status { margin-left: 8px; color: var(--green); font-weight: 850; }
+
+    .support-card a { color: var(--accent); font-weight: 800; text-decoration: none; }
+    .support-card a:hover { text-decoration: underline; }
+
+    footer {
+      padding: 30px 0 50px;
+      color: var(--muted);
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 30px;
+    }
+
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: 1fr; }
+      nav { gap: 12px; }
+      .top-controls { width: 100%; justify-content: space-between; }
+      .timer-widget select { max-width: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container topbar">
+      <div class="brand">
+        <img
+          src="favicon.ico"
+          class="brand-logo"
+          alt="Anti-AI Qwen Academy Logo"
+          onerror="this.style.display='none'"
+        />
+        <div>
+          <strong data-i18n="brandTitle">Anti-AI Qwen Academy</strong>
+          <small data-i18n="brandSub">Free EGE-2026 Projects</small>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#structure" data-i18n="navStructure">Structure</a>
+        <a href="#changes" data-i18n="navChanges">Important 2026</a>
+        <a href="#criteria" data-i18n="navCriteria">Criteria</a>
+        <a href="#trainer" data-i18n="navTrainer">Trainer</a>
+        <a href="#part2" data-i18n="navPart2">Part 2</a>
+        <a href="#checklist" data-i18n="navChecklist">Checklist</a>
+        <a href="#plan" data-i18n="navPlan">25 Days</a>
+        <a href="#support" data-i18n="navSupport">Support</a>
+      </nav>
+
+      <div class="top-controls">
+        <button id="langToggle" class="lang-btn" type="button" aria-label="Switch Language">
+          <span class="lang-option" data-lang="ru">RU</span>
+          <span class="lang-sep">/</span>
+          <span class="lang-option active" data-lang="en">EN</span>
+        </button>
+
+        <div class="timer-widget" id="timerWidget" role="group" aria-label="Exam Timer">
+          <select id="timerPreset" aria-label="Timer Preset"></select>
+          <span id="timerDisplay">03:30:00</span>
+          <button id="timerToggle" class="timer-btn" type="button">▶</button>
+          <button id="timerReset" class="timer-btn" type="button">↺</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="badge" data-i18n="badge">Free • HTML • Biology EGE-2026 • 28 Tasks</span>
+
+        <h1 data-i18n="h1">Help you pass <span class="accent">Biology EGE</span> correctly</h1>
+
+        <p class="lead" data-i18n="lead">
+          For each task: first the question, then information about what the task checks, then the trainer.
+          Answer options are shuffled so you cannot guess “always the first one”. The correct answer appears
+          only after your answer.
+        </p>
+
+        <div class="actions">
+          <button class="btn" onclick="scrollToId('trainer')" data-i18n="actionTrainer">Take the trainer</button>
+          <button class="btn secondary" onclick="scrollToId('part2')" data-i18n="actionPart2">Part 2</button>
+          <button class="btn secondary" onclick="scrollToId('structure')" data-i18n="actionStructure">Exam Structure</button>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <h3 data-i18n="quickStats">Quick Stats</h3>
+
+        <div class="metrics">
+          <div class="metric">
+            <strong id="answeredCount">0/21</strong>
+            <span data-i18n="metricAnswered">auto-questions completed</span>
+          </div>
+          <div class="metric">
+            <strong id="correctCount">0</strong>
+            <span data-i18n="metricCorrect">correct answers</span>
+          </div>
+          <div class="metric">
+            <strong id="checklistProgress">0%</strong>
+            <span data-i18n="metricChecklist">checklist</span>
+          </div>
+        </div>
+
+        <progress id="overall" value="0" max="100"></progress>
+        <p class="note" data-i18n="noteReset">Answers and checklist reset each time the page is opened.</p>
+      </aside>
+    </section>
+
+    <section id="structure">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="structureTitle">Biology EGE Structure</h2>
+          <p class="sub" data-i18n="structureSub">Total 28 tasks: 21 short-answer and 7 extended-response.</p>
+        </div>
+      </div>
+
+      <div class="grid" id="structureGrid"></div>
+    </section>
+
+    <section id="changes">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="changesTitle">What Matters for EGE-2026</h2>
+          <p class="sub" data-i18n="changesSub">Keep these points in mind while preparing.</p>
+        </div>
+      </div>
+
+      <div class="grid" id="changesGrid"></div>
+    </section>
+
+    <section id="criteria">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="criteriaTitle">Criteria and Rules</h2>
+          <p class="sub" data-i18n="criteriaSub">What you need to know when completing tasks.</p>
+        </div>
+      </div>
+
+      <div class="grid" id="criteriaGrid"></div>
+    </section>
+
+    <section id="trainer">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="trainerTitle">Trainer: Part 1</h2>
+          <p class="sub" data-i18n="trainerSub">
+            For each task: <strong>1) question</strong> →
+            <strong>2) information</strong> about what the task checks →
+            <strong>3) trainer</strong>, where you answer yourself.
+            Answer options are shuffled randomly — the correct answer is not always first.
+          </p>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <span data-i18n="filterShow">Show:</span>
+        <button class="filter-btn active" data-filter="all" id="filterAll" onclick="setFilter('all', this)"></button>
+        <button class="filter-btn" data-filter="bot" id="filterBot" onclick="setFilter('bot', this)"></button>
+        <button class="filter-btn" data-filter="zoo" id="filterZoo" onclick="setFilter('zoo', this)"></button>
+        <button class="filter-btn" data-filter="hum" id="filterHum" onclick="setFilter('hum', this)"></button>
+        <button class="filter-btn" data-filter="eco" id="filterEco" onclick="setFilter('eco', this)"></button>
+      </div>
+
+      <div class="reset-bar">
+        <button class="btn secondary small" onclick="resetAll()" data-i18n="resetAll">Reset all answers</button>
+      </div>
+
+      <div id="quizContainer"></div>
+      <div id="summaryBox"></div>
+    </section>
+
+    <section id="part2">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="part2Title">Part 2: Tasks 22–28</h2>
+          <p class="sub" data-i18n="part2Sub">
+            These tasks require a full justified solution. Automatic checking of only the final answer is incorrect here:
+            manual checking by criteria is needed. Below are task statements, methodological hints, approximate answers
+            where reliable, and a self-check field.
+          </p>
+        </div>
+      </div>
+
+      <div id="part2Container"></div>
+    </section>
+
+    <section id="checklist">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="checklistTitle">EGE-2026 Preparation Checklist</h2>
+          <p class="sub" data-i18n="checklistSub">Tick completed items — the checklist resets on a new page opening.</p>
+        </div>
+      </div>
+
+      <ul class="checklist" id="checklistUl"></ul>
+    </section>
+
+    <section id="plan">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="planTitle">Full 25-Day Course for Grade 11</h2>
+          <p class="sub" data-i18n="planSub">Preparation route according to the EGE-2026 structure.</p>
+        </div>
+      </div>
+
+      <div class="plan-grid" id="planGrid"></div>
+    </section>
+
+    <section id="support">
+      <div class="support-card">
+        <h2 data-i18n="supportTitle">🤝 SUPPORT THE PROJECT 💙</h2>
+        <p data-i18n="supportP1"><strong>The app is free. It was and will remain free.</strong></p>
+        <p data-i18n="supportP2">All apps are free and ad-free. Your help supports offline security and education.</p>
+        <p>
+          <span data-i18n="supportPhoneLabel">📱 TRANSFER BY PHONE NUMBER:</span>
+          <a class="phone" href="tel:89202275676">8-920-227-56-76</a>
+          <button class="btn small" onclick="copyPhone()" data-i18n="copyPhone">📋 Copy number</button>
+          <span id="copyStatus" class="copy-status" aria-live="polite"></span>
+        </p>
+        <p data-i18n="supportP3">✅ Money arrives instantly. No commission. Safe.</p>
+        <p data-i18n="supportP4">❤️ Thanks for your support!</p>
+        <p>🌟 👉 <a href="https://ancf-hue.github.io/" target="_blank" rel="noopener noreferrer" data-i18n="supportCatalog">Catalog of free offline Anti-AI Shield apps</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" data-i18n="footer">
+      Anti-AI Qwen Academy • Free HTML Project • Biology EGE-2026 • 28 Tasks
+    </div>
+  </footer>
+
+  <script>
+    const STORAGE = {
+      answers: "antiIiKvenBio2026v2Answers",
+      checklist: "antiIiKvenBio2026v2Checklist",
+      shuffle: "antiIiKvenBio2026v2Shuffle",
+      manual: "antiIiKvenBio2026v2Manual"
+    };
+
+    // ============================================================
+    // TRANSLATIONS DICTIONARY
+    // ============================================================
+    const I18N = {
+      en: {
+        docTitle: `Anti-AI Qwen Academy | Biology EGE-2026`,
+        metaDesc: `Free offline trainer and checklist for EGE Biology 2026: exam structure, 21 Part 1 tasks, 7 Part 2 tasks, criteria, preparation plan.`,
+        brandTitle: `Anti-AI Qwen Academy`,
+        brandSub: `Free EGE-2026 Projects`,
+        navStructure: `Structure`,
+        navChanges: `Important 2026`,
+        navCriteria: `Criteria`,
+        navTrainer: `Trainer`,
+        navPart2: `Part 2`,
+        navChecklist: `Checklist`,
+        navPlan: `25 Days`,
+        navSupport: `Support`,
+        badge: `Free • HTML • Biology EGE-2026 • 28 Tasks`,
+        h1: `Help you pass <span class="accent">Biology EGE</span> correctly`,
+        lead: `For each task: first the question, then information about what the task checks, then the trainer. Answer options are shuffled so you cannot guess “always the first one”. The correct answer appears only after your answer.`,
+        actionTrainer: `Take the trainer`,
+        actionPart2: `Part 2`,
+        actionStructure: `Exam Structure`,
+        quickStats: `Quick Stats`,
+        metricAnswered: `auto-questions completed`,
+        metricCorrect: `correct answers`,
+        metricChecklist: `checklist`,
+        noteReset: `Answers and checklist reset each time the page is opened.`,
+        structureTitle: `Biology EGE Structure`,
+        structureSub: `Total 28 tasks: 21 short-answer and 7 extended-response.`,
+        changesTitle: `What Matters for EGE-2026`,
+        changesSub: `Keep these points in mind while preparing.`,
+        criteriaTitle: `Criteria and Rules`,
+        criteriaSub: `What you need to know when completing tasks.`,
+        trainerTitle: `Trainer: Part 1`,
+        trainerSub: `For each task: <strong>1) question</strong> → <strong>2) information</strong> about what the task checks → <strong>3) trainer</strong>, where you answer yourself. Answer options are shuffled randomly — the correct answer is not always first.`,
+        filterShow: `Show:`,
+        filterAll: `All`,
+        filterBot: `Botany`,
+        filterZoo: `Zoology`,
+        filterHum: `Human Anatomy`,
+        filterEco: `Ecology`,
+        resetAll: `Reset all answers`,
+        part2Title: `Part 2: Tasks 22–28`,
+        part2Sub: `These tasks require a full justified solution. Automatic checking of only the final answer is incorrect here: manual checking by criteria is needed. Below are task statements, methodological hints, approximate answers where reliable, and a self-check field.`,
+        checklistTitle: `EGE-2026 Preparation Checklist`,
+        checklistSub: `Tick completed items — the checklist resets on a new page opening.`,
+        planTitle: `Full 25-Day Course for Grade 11`,
+        planSub: `Preparation route according to the EGE-2026 structure.`,
+        dayPrefix: `Day`,
+        supportTitle: `🤝 SUPPORT THE PROJECT 💙`,
+        supportP1: `<strong>The app is free. It was and will remain free.</strong>`,
+        supportP2: `All apps are free and ad-free. Your help supports offline security and education.`,
+        supportPhoneLabel: `📱 TRANSFER BY PHONE NUMBER:`,
+        copyPhone: `📋 Copy number`,
+        copied: `✓ Copied`,
+        supportP3: `✅ Money arrives instantly. No commission. Safe.`,
+        supportP4: `❤️ Thanks for your support!`,
+        supportCatalog: `Catalog of free offline Anti-AI Shield apps`,
+        footer: `Anti-AI Qwen Academy • Free HTML Project • Biology EGE-2026 • 28 Tasks`,
+        
+        // Card Content Translations
+        cardPart1Tag: `Part 1`,
+        cardPart1Title: `21 Short-Answer Tasks`,
+        cardPart1List: [
+          `The answer is a word, phrase, sequence of digits, or number.`,
+          `Tasks 1–21 cover all biology sections.`,
+          `Do not write units of measurement.`
+        ],
+        cardPart2Tag: `Part 2`,
+        cardPart2Title: `7 Extended-Response Tasks`,
+        cardPart2List: [
+          `Tasks 22–28 require a full solution.`,
+          `You must provide an explanation, description, or justification.`,
+          `Graded by experts according to FIPI criteria.`
+        ],
+        cardTotalTag: `Total`,
+        cardTotalTitle: `28 Tasks, 210 Minutes`,
+        cardTotalList: [
+          `Time allowed: 3 hours 30 minutes (210 minutes).`,
+          `A non-programmable calculator is permitted.`,
+          `Maximum raw score: 57.`
+        ],
+        cardAntiAITag: `Anti-AI`,
+        cardAntiAITitle: `Check, Don't Copy`,
+        cardAntiAIText: `Ready-made AI solutions often contain biological errors, wrong terms, and skipped steps. For EGE-2026, you need to learn to check every statement.`,
+
+        cardStructTag: `Structure`,
+        cardStructTitle: `28 Tasks in the Exam`,
+        cardStructText: `21 Part 1 short-answer tasks + 7 Part 2 extended-response tasks.`,
+        
+        cardFormsTag: `Part 1`,
+        cardFormsTitle: `Answer Forms`,
+        cardFormsText: `Word, phrase, sequence of digits, integer, or terminating decimal.`,
+        
+        cardExtTag: `Part 2`,
+        cardExtTitle: `Extended Solution`,
+        cardExtText: `Tasks 22–28 require a full answer with explanation, description, or justification.`,
+        
+        cardCalcTag: `Calculator`,
+        cardCalcTitle: `Non-Programmable Calculator Allowed`,
+        cardCalcText: `Use a non-programmable calculator for computations.`,
+        
+        cardTopicsTag: `Topics`,
+        cardTopicsTitle: `Biology Sections`,
+        cardTopicsList: [
+          `Biology as a Science.`,
+          `Cell as a Biological System.`,
+          `Organism as a Biological System.`,
+          `Systematics and Diversity of Organic World.`,
+          `Human Organism and Health.`,
+          `Evolution of Living Nature.`,
+          `Ecosystems and Their Patterns.`
+        ],
+        
+        cardSheetTag: `Part 2`,
+        cardSheetTitle: `Tasks 22–28`,
+        cardSheetText: `Solutions are written in Answer Sheet No. 2. Write clearly, legibly, and with full justification.`,
+        
+        cardThreshTag: `Thresholds`,
+        cardThreshTitle: `Minimum Threshold`,
+        cardThreshText: `Minimum thresholds and conversion of raw scores to test scores are set officially. Before publishing, check them against Rosobrnadzor orders and FIPI materials for 2026.`,
+        
+        cardWarnTag: `Attention`,
+        cardWarnTitle: `Typical Mistakes`,
+        cardWarnText: `Wrong terms, confusion in classification, errors in genetic problems, cytology, and ecology. Check every statement.`,
+
+        cardCritShortTag: `Part 1`,
+        cardCritShortTitle: `Short Answer`,
+        cardCritShortList: [
+          `Word or phrase — no spaces.`,
+          `Sequence of digits — no spaces or commas.`,
+          `Number — integer or decimal.`,
+          `Each symbol in a separate cell.`
+        ],
+        
+        cardCritExtTag: `Part 2`,
+        cardCritExtTitle: `Tasks 22–28`,
+        cardCritExtList: [
+          `Full solution in Sheet No. 2.`,
+          `Write the task number, then the solution.`,
+          `The solution must be justified.`,
+          `Write the answer clearly and legibly.`
+        ],
+        
+        cardCritGradeTag: `Grading`,
+        cardCritGradeTitle: `How Grading Works`,
+        cardCritGradeList: [
+          `Part 1: 1–2 points per task.`,
+          `Part 2: 2 to 3 points per task.`,
+          `Maximum raw score: 57.`,
+          `Exact score distribution is in the FIPI specification.`
+        ],
+        
+        cardCritToolsTag: `Tools`,
+        cardCritToolsTitle: `What Is Allowed`,
+        cardCritToolsList: [
+          `Non-programmable calculator.`,
+          `Scratch paper (not graded).`
+        ],
+        
+        cardCritTermsTag: `Terms`,
+        cardCritTermsTitle: `What to Remember`,
+        cardCritTermsList: [
+          `Main methods of biological research.`,
+          `Structure and functions of the cell.`,
+          `Laws of heredity.`,
+          `Classification of organisms.`,
+          `Functions of human organ systems.`,
+          `Ecological patterns.`
+        ],
+        
+        cardCritSelfTag: `Verification`,
+        cardCritSelfTitle: `How to Check Yourself`,
+        cardCritSelfList: [
+          `Check terms and their definitions.`,
+          `Check the logic of solving genetic problems.`,
+          `Check the sequence of processes.`,
+          `Judge whether the result is plausible.`
+        ],
+        
+        cardCritErrTag: `Attention`,
+        cardCritErrTitle: `Typical Mistakes`,
+        cardCritErrList: [
+          `Incorrect definition of a term.`,
+          `Confusion in taxa.`,
+          `Errors in crossing schemes.`,
+          `Misinterpretation of graphs.`
+        ],
+        
+        cardCritFrameTag: `Structure`,
+        cardCritFrameTitle: `Framework for Solving Part 2`,
+        cardCritFrameList: [
+          `1. Read the condition and highlight key data.`,
+          `2. Write down the solution process.`,
+          `3. Justify each step.`,
+          `4. Write the answer.`
+        ],
+
+        // Quiz Labels
+        qLabel1: `1. Question`,
+        qLabel2: `2. Task Info`,
+        qLabel3: `3. Trainer — Answer Yourself`,
+        resCorrect: `✅ Correct!`,
+        resWrong: `❌ Wrong.`,
+        resAns: `Correct answer:`,
+        resExp: `Explanation:`,
+        resSrc: `Source:`,
+        sumDone: `Auto-questions completed:`,
+        sumOf: `of`,
+        sumCorr: `Correct answers:`,
+        sumFin: `Answer all auto-questions to see the final result.`,
+        verExc: `Excellent result! You are well prepared for EGE-2026.`,
+        verGood: `Good, but analyze the task mistakes.`,
+        verNeed: `You need to carefully work through the EGE-2026 tasks.`,
+        confReset: `Reset all answers and shuffle options again?`,
+        errCopy: `Could not copy automatically. Number: `,
+        
+        // Part 2 Labels
+        p2Tag: `Part 2`,
+        p2Task: `Task`,
+        p2Hint: `Verification / Hint:`,
+        p2InputLbl: `Your final answer or short self-check note (this session):`,
+        p2Placeholder: `Enter your answer or note...`,
+
+        // Topic Labels
+        topicBot: `Botany`,
+        topicZoo: `Zoology`,
+        topicHum: `Human Anatomy`,
+        topicEco: `Ecology`,
+
+        // Timer Labels
+        timerBio: `Biology — 210 min`,
+        timerPractice: `Practice — 60 min`,
+        timerUp: `Time is up!`,
+        timerStart: `Start timer`,
+        timerPause: `Pause timer`,
+        timerReset: `Reset timer`
+      },
+      ru: {
+        docTitle: `Анти-ИИ Квен Академия | Биология ЕГЭ-2026`,
+        metaDesc: `Бесплатный тренажёр и чек-лист подготовки к ЕГЭ по биологии 2026: структура экзамена, 21 задание части 1, 7 заданий части 2, критерии, план подготовки.`,
+        brandTitle: `Анти-ИИ Квен Академия`,
+        brandSub: `Бесплатные проекты ЕГЭ-2026`,
+        navStructure: `Структура`,
+        navChanges: `Важно 2026`,
+        navCriteria: `Критерии`,
+        navTrainer: `Тренажёр`,
+        navPart2: `Часть 2`,
+        navChecklist: `Чек-лист`,
+        navPlan: `25 дней`,
+        navSupport: `Поддержать`,
+        badge: `Бесплатно • HTML • Биология ЕГЭ-2026 • 28 заданий`,
+        h1: `Поможем сдать <span class="accent">ЕГЭ по биологии</span> правильно`,
+        lead: `По каждому заданию: сначала вопрос, потом информация о том, что проверяет это задание, потом тренажёр. Варианты ответов перемешиваются, чтобы нельзя было угадать «всегда первый». Правильный ответ появляется только после твоего ответа.`,
+        actionTrainer: `Пройти тренажёр`,
+        actionPart2: `Часть 2`,
+        actionStructure: `Структура экзамена`,
+        quickStats: `Быстрая статистика`,
+        metricAnswered: `автовопросов пройдено`,
+        metricCorrect: `правильных ответов`,
+        metricChecklist: `чек-лист`,
+        noteReset: `Ответы и чек-лист сбрасываются при каждом открытии страницы.`,
+        structureTitle: `Структура ЕГЭ по биологии`,
+        structureSub: `Всего 28 заданий: 21 с кратким ответом и 7 с развёрнутым решением.`,
+        changesTitle: `Что важно учесть в ЕГЭ-2026`,
+        changesSub: `Эти пункты нужно держать в голове при подготовке.`,
+        criteriaTitle: `Критерии и правила`,
+        criteriaSub: `Что важно знать при выполнении заданий.`,
+        trainerTitle: `Тренажёр: часть 1`,
+        trainerSub: `По каждому заданию: <strong>1) вопрос</strong> → <strong>2) информация</strong> о том, что проверяет задание → <strong>3) тренажёр</strong>, где ты отвечаешь сам. Варианты ответов перемешиваются случайно — правильный ответ не всегда стоит первым.`,
+        filterShow: `Показать:`,
+        filterAll: `Все`,
+        filterBot: `Ботаника`,
+        filterZoo: `Зоология`,
+        filterHum: `Человек`,
+        filterEco: `Экология`,
+        resetAll: `Сбросить все ответы`,
+        part2Title: `Часть 2: задания 22–28`,
+        part2Sub: `Эти задания требуют полного обоснованного решения. Автоматическая проверка одного финального ответа здесь некорректна: нужна ручная проверка по критериям. Ниже — условия заданий, методические подсказки, ориентировочные ответы (где они надёжны) и поле для самопроверки.`,
+        checklistTitle: `Чек-лист подготовки к ЕГЭ-2026`,
+        checklistSub: `Отмечай выполненные пункты — при новом открытии страницы чек-лист сбросится.`,
+        planTitle: `Полный курс 25 дней для 11 класса`,
+        planSub: `Маршрут подготовки по структуре ЕГЭ-2026.`,
+        dayPrefix: `День`,
+        supportTitle: `🤝 ПОДДЕРЖАТЬ ПРОЕКТ 💙`,
+        supportP1: `<strong>Приложение бесплатное. Было и останется.</strong>`,
+        supportP2: `Все приложения бесплатны и без рекламы. Ваша помощь помогает развитию офлайн-безопасности и образования.`,
+        supportPhoneLabel: `📱 ПЕРЕВОД ПО НОМЕРУ ТЕЛЕФОНА:`,
+        copyPhone: `📋 Копировать номер`,
+        copied: `✓ Скопировано`,
+        supportP3: `✅ Деньги придут мгновенно. Без комиссии. Безопасно.`,
+        supportP4: `❤️ Спасибо за поддержку!`,
+        supportCatalog: `Каталог бесплатных офлайн-приложений Anti-AI Shield`,
+        footer: `Анти-ИИ Квен Академия • Бесплатный HTML-проект • Биология ЕГЭ-2026 • 28 заданий`,
+
+        // Card Content Translations
+        cardPart1Tag: `Часть 1`,
+        cardPart1Title: `21 задание с кратким ответом`,
+        cardPart1List: [
+          `Ответ — слово, словосочетание, последовательность цифр, число.`,
+          `Задания 1–21 охватывают все разделы биологии.`,
+          `Единицы измерения писать не нужно.`
+        ],
+        cardPart2Tag: `Часть 2`,
+        cardPart2Title: `7 заданий с развёрнутым решением`,
+        cardPart2List: [
+          `Задания 22–28 — полное решение.`,
+          `Нужно дать объяснение, описание или обоснование.`,
+          `Проверяется экспертами по критериям ФИПИ.`
+        ],
+        cardTotalTag: `Итого`,
+        cardTotalTitle: `28 заданий, 210 минут`,
+        cardTotalList: [
+          `Время выполнения — 3 часа 30 минут (210 минут).`,
+          `Разрешён непрограммируемый калькулятор.`,
+          `Максимальный первичный балл — 57.`
+        ],
+        cardAntiAITag: `Анти-ИИ`,
+        cardAntiAITitle: `Проверяй, а не копируй`,
+        cardAntiAIText: `Готовые ИИ-решения часто содержат биологические ошибки, неверные термины и пропущенные шаги. Для ЕГЭ-2026 нужно учиться проверять каждое утверждение.`,
+
+        cardStructTag: `Структура`,
+        cardStructTitle: `28 заданий в работе`,
+        cardStructText: `21 задание части 1 с кратким ответом + 7 заданий части 2 с развёрнутым решением.`,
+        
+        cardFormsTag: `Часть 1`,
+        cardFormsTitle: `Формы ответа`,
+        cardFormsText: `Слово, словосочетание, последовательность цифр, целое число или конечная десятичная дробь.`,
+        
+        cardExtTag: `Часть 2`,
+        cardExtTitle: `Развёрнутое решение`,
+        cardExtText: `Задания 22–28 требуют полного ответа с объяснением, описанием или обоснованием.`,
+        
+        cardCalcTag: `Калькулятор`,
+        cardCalcTitle: `Разрешён непрограммируемый калькулятор`,
+        cardCalcText: `Для вычислений используйте непрограммируемый калькулятор.`,
+        
+        cardTopicsTag: `Темы`,
+        cardTopicsTitle: `Разделы биологии`,
+        cardTopicsList: [
+          `Биология как наука.`,
+          `Клетка как биологическая система.`,
+          `Организм как биологическая система.`,
+          `Система и многообразие органического мира.`,
+          `Организм человека и его здоровье.`,
+          `Эволюция живой природы.`,
+          `Экосистемы и присущие им закономерности.`
+        ],
+        
+        cardSheetTag: `Часть 2`,
+        cardSheetTitle: `Задания 22–28`,
+        cardSheetText: `Решения записываются в бланк ответов № 2. Нужно писать чётко, разборчиво и с полным обоснованием.`,
+        
+        cardThreshTag: `Пороги`,
+        cardThreshTitle: `Минимальный порог`,
+        cardThreshText: `Минимальные пороги и перевод первичных баллов в тестовые устанавливаются официально. Перед публикацией сверяйте их с приказами Рособрнадзора и материалами ФИПИ на 2026 год.`,
+        
+        cardWarnTag: `Внимание`,
+        cardWarnTitle: `Типичные ошибки`,
+        cardWarnText: `Неверные термины, путаница в классификации, ошибки в генетических задачах, цитологии и экологии. Проверяй каждое утверждение.`,
+
+        cardCritShortTag: `Часть 1`,
+        cardCritShortTitle: `Краткий ответ`,
+        cardCritShortList: [
+          `Слово или словосочетание — без пробелов.`,
+          `Последовательность цифр — без пробелов и запятых.`,
+          `Число — целое или десятичная дробь.`,
+          `Каждый символ — в отдельной клетке.`
+        ],
+        
+        cardCritExtTag: `Часть 2`,
+        cardCritExtTitle: `Задания 22–28`,
+        cardCritExtList: [
+          `Полное решение в бланке № 2.`,
+          `Записывается номер задания, затем решение.`,
+          `Решение должно быть обоснованным.`,
+          `Ответ записывается чётко и разборчиво.`
+        ],
+        
+        cardCritGradeTag: `Оценка`,
+        cardCritGradeTitle: `Как оценивают`,
+        cardCritGradeList: [
+          `Часть 1: 1–2 балла за задание.`,
+          `Часть 2: от 2 до 3 баллов за задание.`,
+          `Максимальный первичный балл — 57.`,
+          `Точное распределение баллов — в спецификации ФИПИ.`
+        ],
+        
+        cardCritToolsTag: `Инструменты`,
+        cardCritToolsTitle: `Что разрешено`,
+        cardCritToolsList: [
+          `Непрограммируемый калькулятор.`,
+          `Черновик (не учитывается).`
+        ],
+        
+        cardCritTermsTag: `Термины`,
+        cardCritTermsTitle: `Что нужно помнить`,
+        cardCritTermsList: [
+          `Основные методы биологических исследований.`,
+          `Строение и функции клетки.`,
+          `Законы наследственности.`,
+          `Классификация организмов.`,
+          `Функции систем органов человека.`,
+          `Экологические закономерности.`
+        ],
+        
+        cardCritSelfTag: `Проверка`,
+        cardCritSelfTitle: `Как проверять себя`,
+        cardCritSelfList: [
+          `Проверь термины и их определения.`,
+          `Проверь логику решения генетической задачи.`,
+          `Проверь последовательность процессов.`,
+          `Оцени правдоподобность результата.`
+        ],
+        
+        cardCritErrTag: `Внимание`,
+        cardCritErrTitle: `Типичные ошибки`,
+        cardCritErrList: [
+          `Неверное определение термина.`,
+          `Путаница в таксонах.`,
+          `Ошибки в схемах скрещивания.`,
+          `Неверная интерпретация графиков.`
+        ],
+        
+        cardCritFrameTag: `Структура`,
+        cardCritFrameTitle: `Каркас решения части 2`,
+        cardCritFrameList: [
+          `1. Прочитать условие и выделить ключевые данные.`,
+          `2. Записать ход решения.`,
+          `3. Обосновать каждый шаг.`,
+          `4. Записать ответ.`
+        ],
+
+        // Quiz Labels
+        qLabel1: `1. Вопрос`,
+        qLabel2: `2. Информация о задании`,
+        qLabel3: `3. Тренажёр — ответь сам`,
+        resCorrect: `✅ Правильно!`,
+        resWrong: `❌ Неправильно.`,
+        resAns: `Правильный ответ:`,
+        resExp: `Пояснение:`,
+        resSrc: `Источник:`,
+        sumDone: `Пройдено автовопросов:`,
+        sumOf: `из`,
+        sumCorr: `Правильных ответов:`,
+        sumFin: `Ответь на все автовопросы, чтобы увидеть итог.`,
+        verExc: `Отличный результат! Ты хорошо готов к ЕГЭ-2026.`,
+        verGood: `Хорошо, но разбери ошибки по заданиям.`,
+        verNeed: `Нужно внимательно проработать задания ЕГЭ-2026.`,
+        confReset: `Сбросить все ответы и перемешать варианты заново?`,
+        errCopy: `Не удалось скопировать автоматически. Номер: `,
+        
+        // Part 2 Labels
+        p2Tag: `Часть 2`,
+        p2Task: `Задание`,
+        p2Hint: `Проверка / подсказка:`,
+        p2InputLbl: `Твой итог для самопроверки:`,
+        p2Placeholder: `Впиши свой ответ или пометку...`,
+
+        // Topic Labels
+        topicBot: `Ботаника`,
+        topicZoo: `Зоология`,
+        topicHum: `Человек`,
+        topicEco: `Экология`,
+
+        // Timer Labels
+        timerBio: `Биология — 210 мин`,
+        timerPractice: `Тренировка — 60 мин`,
+        timerUp: `Время вышло!`,
+        timerStart: `Запустить таймер`,
+        timerPause: `Пауза таймера`,
+        timerReset: `Сброс таймера`
+      }
+    };
+
+    let currentLang = "en";
+
+    function loc(key) {
+      return I18N[currentLang][key] || "";
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, function (m) {
+        return {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        }[m];
+      });
+    }
+
+    function scrollToId(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    // ============================================================
+    // DATA STRUCTURES (Translated Content)
+    // ============================================================
+    
+    const structureCardsData = [
+      {
+        tagKey: "cardPart1Tag", titleKey: "cardPart1Title", listKey: "cardPart1List", cls: "warn-card", tagCls: "orange"
+      },
+      {
+        tagKey: "cardPart2Tag", titleKey: "cardPart2Title", listKey: "cardPart2List", cls: "danger-card", tagCls: "red"
+      },
+      {
+        tagKey: "cardTotalTag", titleKey: "cardTotalTitle", listKey: "cardTotalList", cls: "success-card", tagCls: "green"
+      },
+      {
+        tagKey: "cardAntiAITag", titleKey: "cardAntiAITitle", textKey: "cardAntiAIText", cls: "", tagCls: ""
+      }
+    ];
+
+    const changesCardsData = [
+      { tagKey: "cardStructTag", titleKey: "cardStructTitle", textKey: "cardStructText", cls: "success-card", tagCls: "green" },
+      { tagKey: "cardFormsTag", titleKey: "cardFormsTitle", textKey: "cardFormsText", cls: "warn-card", tagCls: "orange" },
+      { tagKey: "cardExtTag", titleKey: "cardExtTitle", textKey: "cardExtText", cls: "warn-card", tagCls: "orange" },
+      { tagKey: "cardCalcTag", titleKey: "cardCalcTitle", textKey: "cardCalcText", cls: "success-card", tagCls: "green" },
+      { tagKey: "cardTopicsTag", titleKey: "cardTopicsTitle", listKey: "cardTopicsList", cls: "success-card", tagCls: "green" },
+      { tagKey: "cardSheetTag", titleKey: "cardSheetTitle", textKey: "cardSheetText", cls: "", tagCls: "" },
+      { tagKey: "cardThreshTag", titleKey: "cardThreshTitle", textKey: "cardThreshText", cls: "warn-card", tagCls: "orange" },
+      { tagKey: "cardWarnTag", titleKey: "cardWarnTitle", textKey: "cardWarnText", cls: "danger-card", tagCls: "red" }
+    ];
+
+    const criteriaCardsData = [
+      { tagKey: "cardCritShortTag", titleKey: "cardCritShortTitle", listKey: "cardCritShortList", cls: "", tagCls: "" },
+      { tagKey: "cardCritExtTag", titleKey: "cardCritExtTitle", listKey: "cardCritExtList", cls: "warn-card", tagCls: "orange" },
+      { tagKey: "cardCritGradeTag", titleKey: "cardCritGradeTitle", listKey: "cardCritGradeList", cls: "danger-card", tagCls: "red" },
+      { tagKey: "cardCritToolsTag", titleKey: "cardCritToolsTitle", listKey: "cardCritToolsList", cls: "", tagCls: "" },
+      { tagKey: "cardCritTermsTag", titleKey: "cardCritTermsTitle", listKey: "cardCritTermsList", cls: "success-card", tagCls: "green" },
+      { tagKey: "cardCritSelfTag", titleKey: "cardCritSelfTitle", listKey: "cardCritSelfList", cls: "success-card", tagCls: "green" },
+      { tagKey: "cardCritErrTag", titleKey: "cardCritErrTitle", listKey: "cardCritErrList", cls: "danger-card", tagCls: "red" },
+      { tagKey: "cardCritFrameTag", titleKey: "cardCritFrameTitle", listKey: "cardCritFrameList", cls: "", tagCls: "" }
+    ];
+
+    const checklistItemsData = [
+      { key: "ch1", labelEn: "Reviewed methods of biological research", labelRu: "Повторил методы биологических исследований" },
+      { key: "ch2", labelEn: "Practiced cytology: cell structure, organelles", labelRu: "Отработал цитологию: строение клетки, органоиды" },
+      { key: "ch3", labelEn: "Reviewed metabolism and energy exchange in the cell", labelRu: "Повторил обмен веществ и энергии в клетке" },
+      { key: "ch4", labelEn: "Practiced DNA replication, transcription, and translation", labelRu: "Отработал репликацию ДНК, транскрипцию и трансляцию" },
+      { key: "ch5", labelEn: "Reviewed reproduction and individual development of organisms", labelRu: "Повторил размножение и индивидуальное развитие организмов" },
+      { key: "ch6", labelEn: "Practiced genetics: Mendel's laws, crossing problems", labelRu: "Отработал генетику: законы Менделя, задачи на скрещивание" },
+      { key: "ch7", labelEn: "Reviewed variability and its forms", labelRu: "Повторил изменчивость и её формы" },
+      { key: "ch8", labelEn: "Practiced selection and biotechnology", labelRu: "Отработал селекцию и биотехнологию" },
+      { key: "ch9", labelEn: "Reviewed systematics and classification of organisms", labelRu: "Повторил систематику и классификацию организмов" },
+      { key: "ch10", labelEn: "Practiced bacteria, fungi, lichens", labelRu: "Отработал бактерии, грибы, лишайники" },
+      { key: "ch11", labelEn: "Reviewed plants: algae, mosses, ferns, gymnosperms, angiosperms", labelRu: "Повторил растения: водоросли, мхи, папоротники, голосеменные, покрытосеменные" },
+      { key: "ch12", labelEn: "Practiced animals: invertebrates and vertebrates", labelRu: "Отработал животных: беспозвоночные и позвоночные" },
+      { key: "ch13", labelEn: "Reviewed anatomy and physiology of humans", labelRu: "Повторил анатомию и физиологию человека" },
+      { key: "ch14", labelEn: "Practiced human hygiene and healthy lifestyle", labelRu: "Отработал гигиену человека и здоровый образ жизни" },
+      { key: "ch15", labelEn: "Reviewed evolutionary theory", labelRu: "Повторил эволюционное учение" },
+      { key: "ch16", labelEn: "Practiced evidence of evolution and anthropogenesis", labelRu: "Отработал доказательства эволюции и антропогенез" },
+      { key: "ch17", labelEn: "Reviewed ecology: environmental factors, ecosystems", labelRu: "Повторил экологию: факторы среды, экосистемы" },
+      { key: "ch18", labelEn: "Practiced food chains and ecological pyramids", labelRu: "Отработал пищевые цепи и экологические пирамиды" },
+      { key: "ch19", labelEn: "Checked reading of graphs and tables", labelRu: "Проверил чтение графиков и таблиц" },
+      { key: "ch20", labelEn: "Performed oral analysis of conditions in 3–4 minutes", labelRu: "Провёл устный анализ условия за 3–4 минуты" },
+      { key: "ch21", labelEn: "Memorized the structure: 21 Part 1 tasks + 7 Part 2 tasks = 28", labelRu: "Запомнил структуру: 21 задание части 1 + 7 заданий части 2 = 28" }
+    ];
+
+    const planDaysData = [
+      { day: 1, critical: true, en: "Diagnostics: exam structure, 21 Part 1 tasks + 7 Part 2 tasks, weak topics.", ru: "Диагностика: структура экзамена, 21 задание части 1 + 7 заданий части 2, слабые темы." },
+      { day: 2, critical: false, en: "Methods of biological research, biology as a science.", ru: "Методы биологических исследований, биология как наука." },
+      { day: 3, critical: false, en: "Cytology: cell structure, organelles.", ru: "Цитология: строение клетки, органоиды." },
+      { day: 4, critical: false, en: "Metabolism and energy exchange in the cell.", ru: "Обмен веществ и энергии в клетке." },
+      { day: 5, critical: false, en: "DNA replication, transcription, translation.", ru: "Репликация ДНК, транскрипция, трансляция." },
+      { day: 6, critical: false, en: "Reproduction and individual development.", ru: "Размножение и индивидуальное развитие." },
+      { day: 7, critical: false, en: "Genetics: Mendel's laws, problems.", ru: "Генетика: законы Менделя, задачи." },
+      { day: 8, critical: false, en: "Variability: modifiable, combinative, mutational.", ru: "Изменчивость: модификационная, комбинативная, мутационная." },
+      { day: 9, critical: false, en: "Selection and biotechnology.", ru: "Селекция и биотехнология." },
+      { day: 10, critical: false, en: "Systematics, bacteria, fungi, lichens.", ru: "Систематика, бактерии, грибы, лишайники." },
+      { day: 11, critical: false, en: "Plants: algae, mosses, ferns.", ru: "Растения: водоросли, мхи, папоротники." },
+      { day: 12, critical: false, en: "Gymnosperm and angiosperm plants.", ru: "Голосеменные и покрытосеменные растения." },
+      { day: 13, critical: false, en: "Invertebrate animals.", ru: "Беспозвоночные животные." },
+      { day: 14, critical: false, en: "Vertebrate animals.", ru: "Позвоночные животные." },
+      { day: 15, critical: true, en: "Anatomy and physiology of humans.", ru: "Анатомия и физиология человека." },
+      { day: 16, critical: true, en: "Human hygiene, healthy lifestyle.", ru: "Гигиена человека, здоровый образ жизни." },
+      { day: 17, critical: true, en: "Evolutionary theory.", ru: "Эволюционное учение." },
+      { day: 18, critical: true, en: "Evidence of evolution, anthropogenesis.", ru: "Доказательства эволюции, антропогенез." },
+      { day: 19, critical: true, en: "Ecology: environmental factors, ecosystems.", ru: "Экология: факторы среды, экосистемы." },
+      { day: 20, critical: true, en: "Food chains, ecological pyramids.", ru: "Пищевые цепи, экологические пирамиды." },
+      { day: 21, critical: true, en: "Tasks 22–23: experiment analysis.", ru: "Задания 22–23: анализ эксперимента." },
+      { day: 22, critical: true, en: "Tasks 24–26: working with images.", ru: "Задания 24–26: работа с изображениями." },
+      { day: 23, critical: true, en: "Tasks 27–28: genetic problems.", ru: "Задания 27–28: генетические задачи." },
+      { day: 24, critical: false, en: "Full practice test: Part 1 under time.", ru: "Полный пробник: часть 1 на время." },
+      { day: 25, critical: false, en: "Full practice test: Part 2 under time.", ru: "Полный пробник: часть 2 на время." }
+    ];
+
+    // Quiz Data (English/Russian pairs)
+    const quizRaw = [
+      {
+        id: 1, topic: "bot", task: 1,
+        en: {
+          text: `Consider the table "Methods of Biological Research". Write the missing term indicated by a question mark.\n\nPrivate scientific method: X-ray structural analysis\nIllustrations of the method: ?`,
+          info: `Task 1 checks knowledge of biological research methods. X-ray structural analysis is a method for studying the spatial structure of molecules using X-rays.`,
+          explanation: `X-ray structural analysis is a cytological method that allows studying the structure of cells and their components at the molecular level. Used in cytology.`,
+          source: `Biology EGE-2026, Task 1`
+        },
+        ru: {
+          text: `Рассмотрите таблицу «Методы биологических исследований». Запишите в ответе пропущенный термин, обозначенный в таблице вопросительным знаком.\n\nЧастнонаучный метод: Рентгеноструктурный анализ\nИллюстрации метода: ?`,
+          info: `Задание 1 проверяет знание методов биологических исследований. Рентгеноструктурный анализ — это метод изучения пространственной структуры молекул с помощью рентгеновских лучей.`,
+          explanation: `Рентгеноструктурный анализ — это цитологический метод, позволяющий изучать структуру клетки и её компонентов на молекулярном уровне. Используется в цитологии.`,
+          source: `Биология ЕГЭ-2026, задание 1`
+        },
+        options: ["Cytology", "Microscopy", "Biochemistry", "Genetics"],
+        correct: 0
+      },
+      {
+        id: 2, topic: "bot", task: 2,
+        en: {
+          text: `The experimenter assembled two setups consisting of aquatic plants, glasses filled with water, funnels, and test tubes. He placed the first setup under bright light for several hours, and the second in a dark cabinet. After that, he compared the amount of oxygen and nitrogen in the test tube of the second setup with the amount of the corresponding gas in the test tube of the first setup.\n\nFor each quantity, determine the nature of change: 1) increased, 2) decreased, 3) did not change.\n\nAmount of oxygen in the second setup relative to the first\nAmount of nitrogen in the second setup relative to the first`,
+          info: `Task 2 checks understanding of photosynthesis. In light, plants release oxygen; in darkness, photosynthesis stops.`,
+          explanation: `In the dark cabinet, photosynthesis does not occur, so oxygen is not released — its amount will decrease (2). Nitrogen does not participate in photosynthesis, its amount will not change (3).`,
+          source: `Biology EGE-2026, Task 2`
+        },
+        ru: {
+          text: `Экспериментатор собрал две установки, состоящие из водных растений, стаканов, заполненных водой, воронок и пробирок. Первую установку он на несколько часов поместил под яркий свет, а вторую — в тёмный шкаф. После этого сравнил количество кислорода и количество азота в пробирке второй установки с количеством соответствующего газа в пробирке первой установки.\n\nДля каждой величины определите характер изменения: 1) увеличилась, 2) уменьшилась, 3) не изменилась.\n\nКоличество кислорода во второй установке относительно первой\nКоличество азота во второй установке относительно первой`,
+          info: `Задание 2 проверяет понимание процесса фотосинтеза. На свету растения выделяют кислород, в темноте фотосинтез прекращается.`,
+          explanation: `В тёмном шкафу фотосинтез не происходит, поэтому кислород не выделяется — его количество уменьшится (2). Азот не участвует в фотосинтезе, его количество не изменится (3).`,
+          source: `Биология ЕГЭ-2026, задание 2`
+        },
+        options: ["Oxygen: 2; Nitrogen: 3", "Oxygen: 1; Nitrogen: 2", "Oxygen: 3; Nitrogen: 1", "Oxygen: 2; Nitrogen: 2"],
+        correct: 0
+      },
+      {
+        id: 3, topic: "zoo", task: 3,
+        en: {
+          text: `The number of autosomes in a rabbit gamete is 21. What is the total number of chromosomes in a rabbit gamete? Write only the number of chromosomes in the answer.`,
+          info: `Task 3 checks knowledge of chromosome sets. A gamete contains a haploid set of chromosomes: autosomes + one sex chromosome.`,
+          explanation: `In a rabbit gamete there are 21 autosomes + 1 sex chromosome = 22 chromosomes (n).`,
+          source: `Biology EGE-2026, Task 3`
+        },
+        ru: {
+          text: `Количество аутосом в гамете кролика равно 21. Какое общее количество хромосом имеет гамета кролика? В ответе запишите только количество хромосом.`,
+          info: `Задание 3 проверяет знание хромосомного набора. В гамете содержится гаплоидный набор хромосом: аутосомы + одна половая хромосома.`,
+          explanation: `В гамете кролика 21 аутосома + 1 половая хромосома = 22 хромосомы (n).`,
+          source: `Биология ЕГЭ-2026, задание 3`
+        },
+        options: ["22", "21", "42", "44"],
+        correct: 0
+      },
+      {
+        id: 4, topic: "zoo", task: 4,
+        en: {
+          text: `What is the probability of homozygous offspring in a monohybrid test cross of heterozygous gray-bodied Drosophila individuals? Record the answer as a number.`,
+          info: `Task 4 checks knowledge of genetics. Test cross is a cross with a homozygous recessive individual.`,
+          explanation: `Test cross of heterozygote (Aa) with recessive homozygote (aa): Aa × aa → 1 Aa : 1 aa. Homozygous offspring (aa) make up 50% = 0.5.`,
+          source: `Biology EGE-2026, Task 4`
+        },
+        ru: {
+          text: `Какова вероятность рождения гомозиготного потомства в моногибридном анализирующем скрещивании гетерозиготных особей дрозофил с серым телом? Ответ запишите в виде числа.`,
+          info: `Задание 4 проверяет знание генетики. Анализирующее скрещивание — скрещивание с гомозиготной рецессивной особью.`,
+          explanation: `Анализирующее скрещивание гетерозиготы (Aa) с рецессивной гомозиготой (aa): Aa × aa → 1 Aa : 1 aa. Гомозиготное потомство (aa) составляет 50% = 0,5.`,
+          source: `Биология ЕГЭ-2026, задание 4`
+        },
+        options: ["0.5", "0.25", "0.75", "1"],
+        correct: 0
+      },
+      {
+        id: 5, topic: "bot", task: 5,
+        en: {
+          text: `Which number in the DNA replication diagram indicates a nucleotide?`,
+          info: `Task 5 checks knowledge of nucleotide structure and DNA replication process.`,
+          explanation: `In the DNA replication diagram, the nucleotide is indicated by number 4 — it is the structural unit of DNA consisting of a nitrogenous base, deoxyribose, and a phosphate group.`,
+          source: `Biology EGE-2026, Task 5`
+        },
+        ru: {
+          text: `Какой цифрой на рисунке репликации ДНК обозначен нуклеотид?`,
+          info: `Задание 5 проверяет знание строения нуклеотида и процесса репликации ДНК.`,
+          explanation: `На рисунке репликации ДНК нуклеотид обозначен цифрой 4 — это структурная единица ДНК, состоящая из азотистого основания, дезоксирибозы и фосфатной группы.`,
+          source: `Биология ЕГЭ-2026, задание 5`
+        },
+        options: ["4", "1", "2", "5"],
+        correct: 0
+      },
+      {
+        id: 6, topic: "bot", task: 6,
+        en: {
+          text: `Establish the correspondence between characteristics and enzymes indicated by numbers 1, 2, 3 in the figure.\n\nA) can only continue the chain\nB) joins DNA nucleotides\nC) joins ribonucleotides\nD) unwinds DNA strands\nE) synthesizes primer\nF) breaks hydrogen bonds`,
+          info: `Task 6 checks knowledge of DNA replication enzymes and their functions.`,
+          explanation: `Enzyme 1 — DNA polymerase: can only continue the chain (A), joins DNA nucleotides (B). Enzyme 2 — primase: joins ribonucleotides (C), synthesizes primer (E). Enzyme 3 — helicase: unwinds DNA strands (D), breaks hydrogen bonds (F). Result: 112323.`,
+          source: `Biology EGE-2026, Task 6`
+        },
+        ru: {
+          text: `Установите соответствие между характеристиками и ферментами, обозначенными на рисунке цифрами 1, 2, 3.\n\nА) может только продолжать цепь\nБ) соединяет нуклеотиды ДНК\nВ) соединяет рибонуклеотиды\nГ) расплетает цепи ДНК\nД) синтезирует затравку (праймер)\nЕ) разрывает водородные связи`,
+          info: `Задание 6 проверяет знание ферментов репликации ДНК и их функций.`,
+          explanation: `Фермент 1 — ДНК-полимераза: может только продолжать цепь (А), соединяет нуклеотиды ДНК (Б). Фермент 2 — праймаза: соединяет рибонуклеотиды (В), синтезирует затравку-праймер (Д). Фермент 3 — хеликаза: расплетает цепи ДНК (Г), разрывает водородные связи (Е). Итого: 112323.`,
+          source: `Биология ЕГЭ-2026, задание 6`
+        },
+        options: ["112323", "121233", "123213", "113223"],
+        correct: 0
+      },
+      {
+        id: 7, topic: "zoo", task: 7,
+        en: {
+          text: `Choose three correct answers and record the numbers under which they are listed.\n\nWhich of the following processes serve as the basis for the formation of combinative variability in animals and humans?\n1) vegetative reproduction\n2) DNA replication\n3) cleavage of the zygote\n4) gametogenesis\n5) exchange of homologous chromosome segments\n6) fertilization`,
+          info: `Task 7 checks knowledge of forms of variability. Combinative variability is associated with gene recombination.`,
+          explanation: `Basics of combinative variability: gametogenesis (4), crossing over (5), and fertilization (6). These processes ensure gene recombination.`,
+          source: `Biology EGE-2026, Task 7`
+        },
+        ru: {
+          text: `Выберите три верных ответа и запишите цифры, под которыми они указаны.\n\nКакие из перечисленных ниже процессов служат основой формирования комбинативной изменчивости у животных и человека?\n1) вегетативное размножение\n2) репликация ДНК\n3) дробление зиготы\n4) гаметогенез\n5) обмен участками гомологичных хромосом\n6) оплодотворение`,
+          info: `Задание 7 проверяет знание форм изменчивости. Комбинативная изменчивость связана с перекомбинацией генов.`,
+          explanation: `Основы комбинативной изменчивости: гаметогенез (4), кроссинговер (5) и оплодотворение (6). Эти процессы обеспечивают перекомбинацию генов.`,
+          source: `Биология ЕГЭ-2026, задание 7`
+        },
+        options: ["4, 5, 6", "1, 2, 3", "2, 3, 4", "1, 4, 6"],
+        correct: 0
+      },
+      {
+        id: 8, topic: "bot", task: 8,
+        en: {
+          text: `Establish the sequence of processes when using the plant tissue culture method. Record the corresponding sequence of numbers.\n1) growth of undifferentiated cells\n2) transfer of callus to medium with growth hormones\n3) isolation of explant from vegetative organ\n4) obtaining plant seedling\n5) organogenesis`,
+          info: `Task 8 checks knowledge of the plant tissue culture method.`,
+          explanation: `Sequence: isolation of explant (3) → growth of undifferentiated cells, callus formation (1) → transfer of callus to hormone medium (2) → organogenesis (5) → obtaining seedling (4).`,
+          source: `Biology EGE-2026, Task 8`
+        },
+        ru: {
+          text: `Установите последовательность процессов при использовании метода культуры клеток и тканей растений. Запишите соответствующую последовательность цифр.\n1) рост недифференцированных клеток\n2) перемещение каллуса на среду с ростовыми гормонами\n3) выделение экспланта из вегетативного органа\n4) получение проростка растения\n5) органогенез`,
+          info: `Задание 8 проверяет знание метода культуры клеток и тканей растений.`,
+          explanation: `Последовательность: выделение экспланта (3) → рост недифференцированных клеток, образование каллуса (1) → перемещение каллуса на среду с гормонами (2) → органогенез (5) → получение проростка (4).`,
+          source: `Биология ЕГЭ-2026, задание 8`
+        },
+        options: ["3, 1, 2, 5, 4", "1, 2, 3, 4, 5", "3, 2, 1, 5, 4", "1, 3, 2, 4, 5"],
+        correct: 0
+      },
+      {
+        id: 9, topic: "zoo", task: 9,
+        en: {
+          text: `Under which number in the figure is a vertebrate animal with a four-chambered stomach depicted?`,
+          info: `Task 9 checks knowledge of the digestive system structure of vertebrate animals.`,
+          explanation: `A four-chambered stomach is characteristic of ruminant mammals (cows). Cow is depicted at number 6 in the figure.`,
+          source: `Biology EGE-2026, Task 9`
+        },
+        ru: {
+          text: `На рисунке под каким номером изображено позвоночное животное с четырёхкамерным желудком?`,
+          info: `Задание 9 проверяет знание строения пищеварительной системы позвоночных животных.`,
+          explanation: `Четырёхкамерный желудок характерен для жвачных млекопитающих (коровы). На рисунке 6 изображена корова.`,
+          source: `Биология ЕГЭ-2026, задание 9`
+        },
+        options: ["6", "1", "2", "3"],
+        correct: 0
+      },
+      {
+        id: 10, topic: "zoo", task: 10,
+        en: {
+          text: `Establish the correspondence between characteristics and animals depicted in figures 1, 2, 3.\n\nA) presence of swim bladder\nB) presence of gill slits in adult\nC) maintenance of constant body temperature\nD) cutaneous-pulmonary respiration\nE) appearance of cervical spine\nF) secondary aquatic animal`,
+          info: `Task 10 checks knowledge of structural features of different classes of vertebrate animals.`,
+          explanation: `Swim bladder (A) — fish (1). Gill slits in adult (B) — amphibian (2). Constant body temp (C) — whale (3). Cutaneous-pulmonary resp (D) — amphibian (2). Cervical spine (E) — amphibian (2). Secondary aquatic (F) — whale (3).`,
+          source: `Biology EGE-2026, Task 10`
+        },
+        ru: {
+          text: `Установите соответствие между характеристиками и животными, изображёнными на рисунках 1, 2, 3.\n\nА) наличие плавательного пузыря\nБ) наличие жаберных щелей у взрослой особи\nВ) поддержание постоянной температуры тела\nГ) кожно-лёгочное дыхание\nД) появление шейного отдела позвоночника\nЕ) вторичноводное животное`,
+          info: `Задание 10 проверяет знание особенностей строения разных классов позвоночных животных.`,
+          explanation: `Плавательный пузырь (А) — у рыбы (1). Жаберные щели у взрослой особи (Б) — у амфибии (2). Постоянная температура тела (В) — у кита (3). Кожно-лёгочное дыхание (Г) — у амфибии (2). Шейный отдел (Д) — у амфибии (2). Вторичноводное животное (Е) — кит (3).`,
+          source: `Биология ЕГЭ-2026, задание 10`
+        },
+        options: ["A-1, B-2, C-3, D-2, E-2, F-3", "A-2, B-1, C-3, D-1, E-2, F-3", "A-1, B-3, C-2, D-3, E-1, F-2", "A-3, B-2, C-1, D-2, E-3, F-1"],
+        correct: 0
+      },
+      {
+        id: 11, topic: "bot", task: 11,
+        en: {
+          text: `Choose three correct answers and record the numbers under which they are listed.\n\nMosses, like angiosperms:\n1) form fruits and seeds\n2) contain chlorophyll in cells\n3) have cellular structure\n4) capable of photosynthesis\n5) have small inconspicuous flowers\n6) contain two cotyledons in embryo`,
+          info: `Task 11 checks knowledge of common features of mosses and angiosperms.`,
+          explanation: `Mosses and angiosperms contain chlorophyll (2), have cellular structure (3), and are capable of photosynthesis (4). Only angiosperms form fruits and seeds.`,
+          source: `Biology EGE-2026, Task 11`
+        },
+        ru: {
+          text: `Выберите три верных ответа и запишите цифры, под которыми они указаны.\n\nМхи, как и покрытосеменные растения:\n1) образуют плоды и семена\n2) содержат в клетках хлорофилл\n3) имеют клеточное строение\n4) способны к фотосинтезу\n5) имеют мелкие невзрачные цветки\n6) содержат в зародыше две семядоли`,
+          info: `Задание 11 проверяет знание общих признаков мхов и покрытосеменных растений.`,
+          explanation: `Мхи и покрытосеменные содержат хлорофилл (2), имеют клеточное строение (3) и способны к фотосинтезу (4). Плоды и семена образуют только покрытосеменные.`,
+          source: `Биология ЕГЭ-2026, задание 11`
+        },
+        options: ["2, 3, 4", "1, 5, 6", "1, 2, 4", "3, 5, 6"],
+        correct: 0
+      },
+      {
+        id: 12, topic: "bot", task: 12,
+        en: {
+          text: `Establish the sequence of systematic groups of organisms starting from the highest rank. Record the corresponding sequence of numbers.\n1) Mulberry\n2) Black Mulberry\n3) Rosaceae\n4) Angiosperms (Flowering Plants)\n5) Plantae\n6) Dicotyledons`,
+          info: `Task 12 checks knowledge of plant systematics. Start with the highest rank — kingdom.`,
+          explanation: `Sequence from highest to lowest: Kingdom Plantae (5) → Division Angiosperms (4) → Class Dicotyledons (6) → Family Rosaceae (3) → Genus Mulberry (1) → Species Black Mulberry (2).`,
+          source: `Biology EGE-2026, Task 12`
+        },
+        ru: {
+          text: `Установите последовательность систематических групп организмов, начиная с самого высокого ранга. Запишите соответствующую последовательность цифр.\n1) Шелковица\n2) Шелковица чёрная\n3) Розоцветные\n4) Покрытосеменные (Цветковые)\n5) Растения\n6) Двудольные`,
+          info: `Задание 12 проверяет знание систематики растений. Начинать нужно с самого высокого ранга — царства.`,
+          explanation: `Последовательность от высшего к низшему: Царство Растения (5) → Отдел Покрытосеменные (4) → Класс Двудольные (6) → Семейство Розоцветные (3) → Род Шелковица (1) → Вид Шелковица чёрная (2).`,
+          source: `Биология ЕГЭ-2026, задание 12`
+        },
+        options: ["5, 4, 6, 3, 1, 2", "1, 2, 3, 4, 5, 6", "5, 4, 3, 6, 1, 2", "2, 1, 3, 6, 4, 5"],
+        correct: 0
+      },
+      {
+        id: 13, topic: "hum", task: 13,
+        en: {
+          text: `Which number in the figures indicates the sclera?`,
+          info: `Task 13 checks knowledge of the structure of the human eye.`,
+          explanation: `The sclera is the outer dense coat of the eye. It is indicated by number 5 in the figure.`,
+          source: `Biology EGE-2026, Task 13`
+        },
+        ru: {
+          text: `Какой цифрой на рисунках обозначена склера?`,
+          info: `Задание 13 проверяет знание строения органа зрения человека.`,
+          explanation: `Склера — наружная плотная оболочка глаза. На рисунке она обозначена цифрой 5.`,
+          source: `Биология ЕГЭ-2026, задание 13`
+        },
+        options: ["5", "4", "6", "1"],
+        correct: 0
+      },
+      {
+        id: 14, topic: "hum", task: 14,
+        en: {
+          text: `Establish the correspondence between characteristics and types of vision disorders presented in figures 1, 2, 3.\n\nA) arises due to elongation of the eyeball\nB) arises with age due to loss of lens elasticity\nC) corrected with concave lenses\nD) characterized by focusing image before retina\nE) arises due to uneven curvature of cornea or lens\nF) corrected with convex lenses`,
+          info: `Task 14 checks knowledge of vision disorders and their correction.`,
+          explanation: `Myopia (1): elongation of eyeball (A), focus before retina (D), correction with concave lenses (C). Hypermetropia (3): loss of lens elasticity (B), correction with convex lenses (F). Astigmatism (2): uneven curvature of cornea (E).`,
+          source: `Biology EGE-2026, Task 14`
+        },
+        ru: {
+          text: `Установите соответствие между характеристиками и типами нарушения зрения, представленными на рисунках 1, 2, 3.\n\nА) возникает вследствие удлинения глазного яблока\nБ) возникает с возрастом вследствие потери эластичности хрусталика\nВ) корректируется с помощью двояковогнутых линз\nГ) отличается фокусированием изображения перед сетчаткой\nД) возникает вследствие неравномерной кривизны роговицы или хрусталика\nЕ) корректируется с помощью двояковыпуклых линз`,
+          info: `Задание 14 проверяет знание нарушений зрения и их коррекции.`,
+          explanation: `Миопия (1): удлинение глазного яблока (А), фокусировка перед сетчаткой (Г), коррекция двояковогнутыми линзами (В). Гиперметропия (3): потеря эластичности хрусталика (Б), коррекция двояковыпуклыми линзами (Е). Астигматизм (2): неравномерная кривизна роговицы (Д).`,
+          source: `Биология ЕГЭ-2026, задание 14`
+        },
+        options: ["A-1, B-3, C-1, D-1, E-2, F-3", "A-2, B-1, C-3, D-2, E-1, F-2", "A-1, B-2, C-3, D-1, E-2, F-2", "A-3, B-1, C-2, D-3, E-1, F-1"],
+        correct: 0
+      },
+      {
+        id: 15, topic: "hum", task: 15,
+        en: {
+          text: `Choose three correct answers.\n\nThe autonomic nervous system of humans regulates:\n1) contraction of smooth muscle of vessels\n2) work of facial muscles\n3) intestinal peristalsis\n4) contraction of skeletal muscles\n5) kidney function\n6) skin sensitivity`,
+          info: `Task 15 checks knowledge of functions of the autonomic nervous system.`,
+          explanation: `Autonomic nervous system regulates internal organs: contraction of smooth muscle of vessels (1), intestinal peristalsis (3), kidney function (5).`,
+          source: `Biology EGE-2026, Task 15`
+        },
+        ru: {
+          text: `Выберите три верных ответа.\n\nВегетативный отдел нервной системы человека регулирует:\n1) сокращение гладкой мускулатуры сосудов\n2) работу мимических мышц\n3) перистальтику кишечника\n4) сокращение скелетной мускулатуры\n5) работу почек\n6) чувствительность кожи`,
+          info: `Задание 15 проверяет знание функций вегетативной нервной системы.`,
+          explanation: `Вегетативная нервная система регулирует работу внутренних органов: сокращение гладкой мускулатуры сосудов (1), перистальтику кишечника (3), работу почек (5).`,
+          source: `Биология ЕГЭ-2026, задание 15`
+        },
+        options: ["1, 3, 5", "2, 4, 6", "1, 2, 4", "3, 4, 6"],
+        correct: 0
+      },
+      {
+        id: 16, topic: "hum", task: 16,
+        en: {
+          text: `Establish the sequence of subordination of elements of the human organism starting from the largest.\n1) musculoskeletal system\n2) clavicle\n3) osteocyte\n4) cell nucleus\n5) skeleton of upper limb\n6) shoulder girdle`,
+          info: `Task 16 checks knowledge of levels of organization of the human organism.`,
+          explanation: `From largest to smallest: musculoskeletal system (1) → skeleton of upper limb (5) → shoulder girdle (6) → clavicle (2) → osteocyte (3) → cell nucleus (4).`,
+          source: `Biology EGE-2026, Task 16`
+        },
+        ru: {
+          text: `Установите последовательность соподчинения элементов организма человека, начиная с наибольшего.\n1) опорно-двигательная система\n2) ключица\n3) остеоцит\n4) ядро клетки\n5) скелет верхней конечности\n6) плечевой пояс`,
+          info: `Задание 16 проверяет знание уровней организации организма человека.`,
+          explanation: `От наибольшего к наименьшему: опорно-двигательная система (1) → скелет верхней конечности (5) → плечевой пояс (6) → ключица (2) → остеоцит (3) → ядро клетки (4).`,
+          source: `Биология ЕГЭ-2026, задание 16`
+        },
+        options: ["1, 5, 6, 2, 3, 4", "4, 3, 2, 6, 5, 1", "1, 6, 5, 2, 3, 4", "4, 3, 6, 2, 5, 1"],
+        correct: 0
+      },
+      {
+        id: 17, topic: "zoo", task: 17,
+        en: {
+          text: `Read the text. Choose three sentences that correctly reflect examples of convergence.\n\n(1) Marine mammals include organisms whose life is partially or completely connected with saline bodies of water.\n(2) During adaptation to aquatic habitat, whales, walruses, and manatees developed streamlined bodies.\n(3) Hind limbs were reduced in whales, however, in walruses they participate in movement in water.\n(4) In whales, as in muskrats, the concentration of myoglobin protein storing oxygen in muscles is increased.\n(5) In dolphins, hind limbs are almost completely reduced, whereas in sea lions they are sufficiently developed.\n(6) Manatees and walruses along with beavers possess increased volume of subcutaneous adipose tissue, which is associated with living in aquatic environment.`,
+          info: `Task 17 checks knowledge of examples of convergence — independent emergence of similar traits in different groups of organisms.`,
+          explanation: `Convergence is independent development of similar traits in different groups in identical conditions. Examples: streamlined body (2), increased myoglobin (4), subcutaneous fat (6).`,
+          source: `Biology EGE-2026, Task 17`
+        },
+        ru: {
+          text: `Прочитайте текст. Выберите три предложения, в которых верно отражены примеры конвергенции.\n\n(1)К морским млекопитающим относят организмы, жизнь которых частично или полностью связана с солёными водоёмами.\n(2)При приспособлении к водной среде обитания у китов, моржей и сирен сформировалось обтекаемое тело.\n(3)Задние конечности редуцировались у китов, однако у моржей они участвуют в передвижении в воде.\n(4)У китов, как и у ондатр, концентрация белка миоглобина, запасающего кислород, в мышцах увеличена.\n(5)У дельфинов почти полностью редуцированы задние конечности, тогда как у морских львов они достаточно развиты.\n(6)Сирены и моржи наряду с бобрами обладают увеличенным объёмом подкожной жировой клетчатки, что связано с обитанием в водной среде.`,
+          info: `Задание 17 проверяет знание примеров конвергенции — независимого возникновения сходных признаков у разных групп организмов.`,
+          explanation: `Конвергенция — это независимое развитие сходных признаков у разных групп организмов в одинаковых условиях. Примеры: обтекаемое тело (2), увеличение миоглобина (4), подкожная жировая клетчатка (6).`,
+          source: `Биология ЕГЭ-2026, задание 17`
+        },
+        options: ["2, 4, 6", "1, 2, 3", "3, 4, 5", "1, 3, 5"],
+        correct: 0
+      },
+      {
+        id: 18, topic: "eco", task: 18,
+        en: {
+          text: `Establish the correspondence between characteristics and types of food chains, examples of which are presented in diagrams 1, 2.\n\nA) in marine ecosystems may start with remains of animals\nB) is a decomposition chain\nC) starts with producers\nD) in terrestrial ecosystems may start with litter\nE) represented at second trophic level by herbivorous organisms\nF) is a grazing chain`,
+          info: `Task 18 checks knowledge of types of food chains (grazing and detrital).`,
+          explanation: `Diagram 1 — grazing chain (starts with producers). Diagram 2 — detrital decomposition chain (starts with litter). A-2, B-2, C-1, D-2, E-1, F-1.`,
+          source: `Biology EGE-2026, Task 18`
+        },
+        ru: {
+          text: `Установите соответствие между характеристиками и типами пищевых цепей, примеры которых представлены на схемах 1, 2.\n\nА) в морских экосистемах может начинаться с останков животных\nБ) является цепью разложения\nВ) начинается с продуцентов\nГ) в наземных экосистемах может начинаться с растительного опада\nД) представлена на втором трофическом уровне растительноядными организмами\nЕ) является пастбищной цепью`,
+          info: `Задание 18 проверяет знание типов пищевых цепей (пастбищные и детритные).`,
+          explanation: `Схема 1 — пастбищная цепь (начинается с продуцентов). Схема 2 — детритная цепь разложения (начинается с опада). А-2, Б-2, В-1, Г-2, Д-1, Е-1.`,
+          source: `Биология ЕГЭ-2026, задание 18`
+        },
+        options: ["A-2, B-2, C-1, D-2, E-1, F-1", "A-1, B-1, C-2, D-1, E-2, F-2", "A-2, B-1, C-1, D-2, E-2, F-1", "A-1, B-2, C-2, D-1, E-1, F-2"],
+        correct: 0
+      },
+      {
+        id: 19, topic: "eco", task: 19,
+        en: {
+          text: `Analyze the table "Adaptations in Animals". Fill in empty cells using elements from the list.\n\nType of adaptation: Mimicry\nCharacteristic: (B)\nExamples of animals: Wasp-fly and clearwing moth\n\nType of adaptation: (A)\nCharacteristic: Bright coloring of animals having poisonous fluid\nExamples of animals: Ladybug and poison dart frog\n\nType of adaptation: Disruptive coloring\nCharacteristic: Alternation of light and dark spots on animal body\nExamples of animals: (C)\n\nList of elements:\n1) warning coloring\n2) Colorado potato beetle and cabbage butterfly\n3) correspondence of coloring and shape of animal to surrounding environment\n4) contrast between animal coloring and background of surrounding environment\n5) common wasp and May beetle\n6) savanna zebra and cheetah\n7) camouflage\n8) imitation of coloring and shape of unprotected animal by protected animal of another species`,
+          info: `Task 19 checks knowledge of types of animal adaptations.`,
+          explanation: `A — warning coloring (1). B — imitation of coloring and shape of unprotected animal by protected one (8). C — savanna zebra and cheetah (6) — examples of disruptive coloring.`,
+          source: `Biology EGE-2026, Task 19`
+        },
+        ru: {
+          text: `Проанализируйте таблицу «Адаптации у животных». Заполните пустые ячейки таблицы, используя элементы из списка.\n\nТип приспособления: Мимикрия\nХарактеристика: (Б)\nПримеры животных: Муха-осовидка и бабочка-стеклянница\n\nТип приспособления: (А)\nХарактеристика: Яркая окраска животных, имеющих ядовитую жидкость\nПримеры животных: Божья коровка и лягушка-древолаз\n\nТип приспособления: Расчленяющая окраска\nХарактеристика: Чередование светлых и тёмных пятен на теле животного\nПримеры животных: (В)\n\nСписок элементов:\n1) предупреждающая окраска\n2) колорадский жук и капустная белянка\n3) соответствие окраски и формы животного окружающей среде\n4) контраст между окраской животного и фоном окружающей среды\n5) оса обыкновенная и майский жук\n6) зебра саванная и гепард\n7) маскировка\n8) подражание по окраске и форме незащищённого животного защищённому животному другого вида`,
+          info: `Задание 19 проверяет знание типов приспособлений животных.`,
+          explanation: `А — предупреждающая окраска (1). Б — подражание по окраске и форме незащищённого животного защищённому (8). В — зебра саванная и гепард (6) — примеры расчленяющей окраски.`,
+          source: `Биология ЕГЭ-2026, задание 19`
+        },
+        options: ["A-1, B-8, C-6", "A-1, B-7, C-5", "A-4, B-8, C-6", "A-7, B-3, C-2"],
+        correct: 0
+      },
+      {
+        id: 20, topic: "eco", task: 20,
+        en: {
+          text: `Analyze the graphs "Curves of population growth of two strains of plague pathogen at various temperatures".\n\nChoose statements that can be formulated based on data analysis.\n1) At 37 °C difference in growth rate of strains is less than at 28 °C.\n2) Lower temperature leads to more intensive reproduction of plague pathogen.\n3) Mutation found in strain M reduces virulence of plague pathogen.\n4) Strain K reproduces faster than strain M at both temperature values.\n5) Above 37 °C both strains stop reproducing.`,
+          info: `Task 20 checks ability to analyze graphs and draw conclusions based on data.`,
+          explanation: `At 37 °C difference between strains is smaller (1). Strain K reproduces faster at both temps (4). Statements 2, 3, 5 do not follow from graphs.`,
+          source: `Biology EGE-2026, Task 20`
+        },
+        ru: {
+          text: `Проанализируйте графики «Кривые роста численности двух штаммов возбудителя чумы при различных температурах».\n\nВыберите утверждения, которые можно сформулировать на основании анализа данных.\n1) При температуре 37 °С разница в скорости роста численности штаммов меньше, чем при температуре 28 °С.\n2) Чем ниже температура, тем интенсивнее размножается возбудитель чумы.\n3) Мутация, обнаруженная у штамма М, снижает вирулентность возбудителя чумы.\n4) Штамм К размножается быстрее, чем штамм М при обоих значениях температуры.\n5) При температуре выше 37 °С оба штамма перестают размножаться.`,
+          info: `Задание 20 проверяет умение анализировать графики и делать выводы на основе данных.`,
+          explanation: `При 37 °С разница между штаммами меньше (1). Штамм К размножается быстрее при обеих температурах (4). Утверждения 2, 3, 5 не следуют из графиков.`,
+          source: `Биология ЕГЭ-2026, задание 20`
+        },
+        options: ["1, 4", "1, 2", "3, 5", "2, 4"],
+        correct: 0
+      },
+      {
+        id: 21, topic: "eco", task: 21,
+        en: {
+          text: `Choose three correct answers.\n\nWhat is characteristic of soil habitat?\n1) constant humidity level\n2) absence of light\n3) sharp temperature fluctuations in deep layers\n4) presence of pores filled with air\n5) increase in density with depth\n6) high oxygen content`,
+          info: `Task 21 checks knowledge of characteristics of soil habitat.`,
+          explanation: `Soil is characterized by: absence of light (2), presence of pores with air (4), increase in density with depth (5).`,
+          source: `Biology EGE-2026, Task 21`
+        },
+        ru: {
+          text: `Выберите три верных ответа.\n\nЧто характерно для почвенной среды обитания?\n1) постоянный уровень влажности\n2) отсутствие света\n3) резкие колебания температуры в глубоких слоях\n4) наличие пор, заполненных воздухом\n5) увеличение плотности с глубиной\n6) высокое содержание кислорода`,
+          info: `Задание 21 проверяет знание характеристик почвенной среды обитания.`,
+          explanation: `Для почвы характерны: отсутствие света (2), наличие пор с воздухом (4), увеличение плотности с глубиной (5).`,
+          source: `Биология ЕГЭ-2026, задание 21`
+        },
+        options: ["2, 4, 5", "1, 3, 6", "1, 2, 4", "3, 5, 6"],
+        correct: 0
+      }
+    ];
+
+    const part2TasksRaw = [
+      {
+        n: 22,
+        en: {
+          title: "Experiment Analysis",
+          text: "What two null hypotheses could the scientist formulate before setting up the experiment? Explain why it is necessary that all test tubes contain the same number of microorganisms. Why might the results be unreliable if not all test tubes fit in the thermostat and some remained on the table?",
+          note: "Null hypotheses: 1) Type of microorganism does not affect alcohol production. 2) Oxygen concentration does not affect alcohol production. Same number of microorganisms is necessary for comparability. If some tubes stayed on table, temperature differs, affecting fermentation speed and making results unreliable."
+        },
+        ru: {
+          title: "Анализ эксперимента",
+          text: "Какие две нулевые гипотезы мог сформулировать учёный перед постановкой эксперимента? Объясните, почему необходимо, чтобы во всех пробирках находилось одинаковое количество микроорганизмов. Почему результаты эксперимента могут быть недостоверными, если не все пробирки поместились в термостат и часть из них осталась на столе?",
+          note: "Нулевые гипотезы: 1) Тип микроорганизма не влияет на продукцию спирта. 2) Концентрация кислорода не влияет на продукцию спирта. Одинаковое количество микроорганизмов необходимо для сопоставимости результатов. Если часть пробирок осталась на столе, температура будет отличаться, что повлияет на скорость брожения и результаты будут недостоверными."
+        }
+      },
+      {
+        n: 23,
+        en: {
+          title: "Chart Analysis",
+          text: "What are the observed differences in alcohol production between yeasts and lactobacilli? How can they be explained? Why do yeasts almost completely stop producing alcohol at high oxygen concentrations?",
+          note: "Yeasts produce significantly more alcohol than lactobacilli. This is related to metabolic type: yeasts are facultative anaerobes performing alcoholic fermentation. Lactobacilli are lactic acid bacteria performing lactic fermentation. At high oxygen, yeasts switch to aerobic respiration where alcohol is not formed."
+        },
+        ru: {
+          title: "Анализ диаграммы",
+          text: "В чём состоят наблюдаемые различия в продукции спирта между дрожжами и лактобактериями? Как их можно объяснить? Почему при высокой концентрации кислорода дрожжи почти полностью прекращают выработку спирта?",
+          note: "Дрожжи производят значительно больше спирта, чем лактобактерии. Это связано с типом обмена веществ: дрожжи — факультативные анаэробы, осуществляют спиртовое брожение. Лактобактерии — молочнокислые бактерии, осуществляют молочнокислое брожение. При высокой концентрации кислорода дрожжи переключаются на аэробное дыхание, при котором спирт не образуется."
+        }
+      },
+      {
+        n: 24,
+        en: {
+          title: "Working with Image",
+          text: "Examine electron photograph of leaf surface. What are structures on leaf surface called? What functions do they perform? Indicate at least three functions. Derivatives of which tissue are these structures?",
+          note: "Photograph shows trichomes (hairs) on leaf surface. Functions: protection from overheating, protection from being eaten by animals, reducing water evaporation, mechanical protection, moisture retention. Trichomes are derivatives of epidermis (protective tissue)."
+        },
+        ru: {
+          title: "Работа с изображением",
+          text: "Рассмотрите электронную фотографию поверхности листа растения. Как называются структуры на поверхности листа? Какие функции они выполняют? Укажите не менее трёх функций. Производными какой ткани являются эти структуры?",
+          note: "На фотографии изображены трихомы (волоски) на поверхности листа. Функции: защита от перегрева, защита от поедания животными, уменьшение испарения воды, механическая защита, удержание влаги. Трихомы являются производными эпидермы (покровной ткани)."
+        }
+      },
+      {
+        n: 25,
+        en: {
+          title: "Analysis of Adaptations",
+          text: "Some fish develop specific outgrowths in gill cavity densely supplied with blood vessels. Hypothesize why such outgrowths arise. In what climate do these fish live? Explain your answer. Often similar adaptations can be found in fish living in waters polluted with organic matter. How can such similarity be explained?",
+          note: "Outgrowths in gill cavity — additional respiratory organ allowing absorption of oxygen from air. Such fish live in tropical climates in waters with low oxygen content. In waters polluted with organic matter oxygen is also low, so similar adaptations develop."
+        },
+        ru: {
+          title: "Анализ адаптаций",
+          text: "У некоторых рыб развиваются специфические выросты в жаберной полости, густо снабжённые кровеносными сосудами. Предположите, почему возникают такие выросты. В каком климате обитают данные рыбы? Ответ поясните. Зачастую сходные адаптации можно обнаружить у рыб, которые обитают в загрязнённых органическими веществами водоёмах. Как можно объяснить такое сходство?",
+          note: "Выросты в жаберной полости — дополнительный орган дыхания, позволяющий усваивать кислород из воздуха. Такие рыбы обитают в тропическом климате в водоёмах с низким содержанием кислорода. В загрязнённых органическими веществами водоёмах кислорода также мало, поэтому развиваются сходные адаптации."
+        }
+      },
+      {
+        n: 26,
+        en: {
+          title: "Phylogenetic Tree Analysis",
+          text: "Marsupials today are distributed in South America and Australia. Based on phylogenetic tree hypothesize where most ancient ancestors of modern marsupials lived. Explain your answer. Explain why biogeographical pattern in marsupial dispersal can be observed. Which geological theory lies at its basis?",
+          note: "Ancient ancestors of marsupials lived in South America, as branching of tree goes from there. Biogeographical pattern explained by continental drift. Basis is theory of continental drift (plate tectonics)."
+        },
+        ru: {
+          title: "Анализ филогенетического древа",
+          text: "Сумчатые животные сегодня распространены в Южной Америке и Австралии. На основании филогенетического древа предположите, где обитали наиболее древние предки современных сумчатых. Ответ поясните. Объясните, почему можно наблюдать биогеографическую закономерность в расселении сумчатых. Какая геологическая теория лежит в её основе?",
+          note: "Древние предки сумчатых обитали в Южной Америке, так как оттуда идёт расхождение ветвей на древе. Биогеографическая закономерность объясняется дрейфом материков. В основе лежит теория дрейфа континентов (тектоника плит)."
+        }
+      },
+      {
+        n: 27,
+        en: {
+          title: "Protein Biosynthesis",
+          text: "In ciliates of genus Euplotes, in sequence of protein-coding genes, in majority of coding triplets third nucleotide is only A or T. During mRNA synthesis in such genes frequent substitution of adenine with inosine is observed, which in turn can pair with uracil, cytosine, and adenine. Determine nucleotide sequence of mRNA fragment, find open reading frame, knowing polypeptide synthesis begins with methionine amino acid. Explain choice. Determine amino acid sequence in polypeptide fragment, build translation scheme. Use genetic code table.",
+          note: "mRNA sequence: 5'-ACUUCAUGUCACAUAUAGUUCU-3'. Open reading frame starts with AUG (positions 6-8). In original frame stop codon UAA close to start, so shift by 1 nucleotide occurs. Polypeptide: met-phe-thr-ile-ile-val."
+        },
+        ru: {
+          title: "Биосинтез белка",
+          text: "У инфузорий рода Euplotes в последовательности белок-кодирующих генов в большинстве кодирующих триплетов в качестве третьего нуклеотида выступают только А или Т. При синтезе иРНК в таких генах наблюдается частое замещение аденина на инозин, который в свою очередь может спариваться с урацилом, цитозином и аденином. Определите нуклеотидную последовательность фрагмента иРНК, найдите открытую рамку считывания, если известно, что синтез полипептида начинается с аминокислоты мет. Поясните свой выбор. Определите последовательность аминокислот в фрагменте полипептида, постройте схему трансляции. Для выполнения задания используйте таблицу генетического кода.",
+          note: "Последовательность иРНК: 5'–АЦУУЦАУГУЦАЦААУААУЦГУУЦУ–3'. Открытая рамка считывания начинается с АУГ (позиции 6-8). В исходной рамке стоп-кодон УАА близко к старту, поэтому происходит сдвиг на 1 нуклеотид. Полипептид: мет-фен-тре-иле-иле-вал."
+        }
+      },
+      {
+        n: 28,
+        en: {
+          title: "Genetic Problem",
+          text: "On X and Y chromosomes of humans exist pseudoautosomal regions containing alleles of one gene, and crossing-over can occur between them. One such gene causes skeletal development disorders. Recessive allele of one form of cataract is inherited linked to X chromosome. Woman having skeletal disorders and suffering from cataract, parents of whom had normally developed skeletons, married man without these diseases, mother of whom suffered from skeletal disorders. Daughter born in this marriage without specified diseases married man suffering from skeletal disorders and not having cataract. Create solution schemes. Determine genotypes of parents and genotypes, phenotypes, gender of possible offspring. Is birth of child suffering from both named diseases possible in first marriage? Explain answer.",
+          note: "Designations: A — normal skeleton, a — disorders (pseudoautosomal region X and Y). B — normal vision, b — cataract (linked to X). Woman genotype: XᵃXᵃᵇ (affected by both). Man genotype: XᵃᴮYᴬ (healthy, mother affected by skeleton). Scheme of first marriage gives son XᵃᵇY via crossing-over — affected by both. Answer: YES, possible."
+        },
+        ru: {
+          title: "Генетическая задача",
+          text: "На Х- и Y-хромосомах человека существуют псевдоаутосомные участки, которые содержат аллели одного гена, и между ними может происходить кроссинговер. Один из таких генов вызывает нарушения в развитии скелета. Рецессивный аллель одной из форм катаракты наследуется сцепленно с Х-хромосомой. Женщина, имеющая нарушения в развитии скелета и страдающая катарактой, родители которой имели нормально развитый скелет, вышла замуж за мужчину без этих заболеваний, мать которого страдала нарушениями в развитии скелета. Родившаяся в этом браке дочь без указанных заболеваний вышла замуж за мужчину, страдающего нарушениями в развитии скелета и не имеющего катаракты. Составьте схемы решения задачи. Определите генотипы родителей и генотипы, фенотипы, пол возможного потомства. Возможно ли рождение в первом браке ребёнка, страдающего двумя названными заболеваниями? Ответ поясните.",
+          note: "Обозначения: A — норма скелета, a — нарушения (псевдоаутосомный участок X и Y). B — норма зрения, b — катаракта (сцеплен с X). Генотип женщины: XᵃᵇXᵇ (больна обоими). Генотип мужчины: XᵃᴮYᴬ (здоров, мать больна скелетом). Схема первого брака даёт при кроссинговере сына XᵃᵇY — болен обоими. Ответ: ДА, возможно."
+        }
+      }
+    ];
+
+    // Process Quiz Data for current language
+    let quiz = [];
+    let part2Tasks = [];
+
+    function prepareData() {
+      quiz = quizRaw.map(q => ({
+        ...q,
+        text: q[currentLang].text,
+        info: q[currentLang].info,
+        explanation: q[currentLang].explanation,
+        source: q[currentLang].source
+      }));
+      
+      part2Tasks = part2TasksRaw.map(t => ({
+        n: t.n,
+        title: t[currentLang].title,
+        text: t[currentLang].text,
+        note: t[currentLang].note
+      }));
+    }
+
+    // ============================================================
+    // LOGIC FUNCTIONS
+    // ============================================================
+
+    const QUIZ_ORIGINAL = quizRaw.map(function (q) {
+      return {
+        options: q.options.slice(),
+        correctValue: q.options[q.correct]
+      };
+    });
+
+    function seededShuffle(arr, seedNum) {
+      const a = arr.slice();
+      let s = seedNum || 1;
+      const rand = function () {
+        s = (s * 9301 + 49297) % 233280;
+        return s / 233280;
+      };
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(rand() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function shuffleOptionsOnce() {
+      const seed = quizRaw.map(function () {
+        return Math.floor(Math.random() * 1000000) + 1;
+      });
+
+      quiz.forEach(function (q, i) {
+        const original = QUIZ_ORIGINAL[i];
+        const shuffled = seededShuffle(original.options, seed[i]);
+
+        q.options = shuffled;
+        q.correct = shuffled.indexOf(original.correctValue);
+      });
+    }
+
+    let savedAnswers = {};
+    let manualNotes = {};
+    let checklistState = {};
+    let currentFilter = "all";
+
+    function applyUIText() {
+      const L = I18N[currentLang];
+      document.title = L.docTitle;
+      document.documentElement.lang = currentLang;
+
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute("content", L.metaDesc);
+
+      document.querySelectorAll("[data-i18n]").forEach(function (el) {
+        const key = el.dataset.i18n;
+        if (L[key] != null) el.innerHTML = L[key];
+      });
+      
+      // Update dynamic labels
+      updateDynamicLabels();
+    }
+
+    function updateDynamicLabels() {
+       // Handled inside render functions mostly, but ensuring static ones are updated
+    }
+
+    function renderCard(card, index, containerId) {
+      const container = document.getElementById(containerId);
+      const div = document.createElement('div');
+      div.className = 'card ' + (card.cls || '');
+      
+      let inner = `<span class="tag ${card.tagCls || ''}">${loc(card.tagKey)}</span>`;
+      inner += `<h3>${loc(card.titleKey)}</h3>`;
+      
+      if (card.listKey) {
+        const list = I18N[currentLang][card.listKey];
+        inner += `<ul class="mini-list">${list.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
+      } else if (card.textKey) {
+        inner += `<p>${escapeHtml(I18N[currentLang][card.textKey])}</p>`;
+      }
+      
+      div.innerHTML = inner;
+      container.appendChild(div);
+    }
+
+    function renderStaticSections() {
+      document.getElementById("structureGrid").innerHTML = '';
+      document.getElementById("changesGrid").innerHTML = '';
+      document.getElementById("criteriaGrid").innerHTML = '';
+      
+      structureCardsData.forEach(c => renderCard(c, 0, "structureGrid"));
+      changesCardsData.forEach(c => renderCard(c, 0, "changesGrid"));
+      criteriaCardsData.forEach(c => renderCard(c, 0, "criteriaGrid"));
+    }
+
+    function renderChecklist() {
+      const ul = document.getElementById("checklistUl");
+      ul.innerHTML = checklistItemsData.map(function (item) {
+        const checked = checklistState[item.key] ? "checked" : "";
+        const doneClass = checklistState[item.key] ? "done" : "";
+        const labelText = currentLang === "ru" ? item.labelRu : item.labelEn;
+        return `
+          <li class="check-item ${doneClass}">
+            <input type="checkbox" id="${item.key}" data-key="${item.key}" ${checked} />
+            <label for="${item.key}">${escapeHtml(labelText)}</label>
+          </li>
+        `;
+      }).join("");
+    }
+
+    function renderPlan() {
+      const L = I18N[currentLang];
+      document.getElementById("planGrid").innerHTML = planDaysData.map(function (d) {
+        const text = currentLang === "ru" ? d.ru : d.en;
+        return `
+          <div class="day ${d.critical ? "critical" : ""}">
+            <b>${escapeHtml(L.dayPrefix)} ${d.day}</b>
+            ${escapeHtml(text)}
+          </div>
+        `;
+      }).join("");
+    }
+
+    function topicLabel(topic) {
+      if (topic === "bot") return loc("topicBot");
+      if (topic === "zoo") return loc("topicZoo");
+      if (topic === "hum") return loc("topicHum");
+      return loc("topicEco");
+    }
+
+    function topicClass(topic) {
+      if (topic === "bot") return "q-number bot";
+      if (topic === "zoo") return "q-number zoo";
+      if (topic === "hum") return "q-number hum";
+      return "q-number eco";
+    }
+
+    function setFilter(filter, btn) {
+      currentFilter = filter;
+      document.querySelectorAll(".filter-btn").forEach(function (b) {
+        b.classList.remove("active");
+      });
+      if (btn) btn.classList.add("active");
+      applyFilter();
+    }
+
+    function applyFilter() {
+      quiz.forEach(function (q) {
+        const block = document.getElementById("q" + q.id);
+        if (!block) return;
+        let show = true;
+        if (currentFilter !== "all") show = q.topic === currentFilter;
+        block.style.display = show ? "" : "none";
+      });
+    }
+
+    function updateFilterLabels() {
+      const botCount = quiz.filter(function (q) { return q.topic === "bot"; }).length;
+      const zooCount = quiz.filter(function (q) { return q.topic === "zoo"; }).length;
+      const humCount = quiz.filter(function (q) { return q.topic === "hum"; }).length;
+      const ecoCount = quiz.filter(function (q) { return q.topic === "eco"; }).length;
+
+      document.getElementById("filterAll").textContent = `${loc("filterAll")} (${quiz.length})`;
+      document.getElementById("filterBot").textContent = `${loc("filterBot")} (${botCount})`;
+      document.getElementById("filterZoo").textContent = `${loc("filterZoo")} (${zooCount})`;
+      document.getElementById("filterHum").textContent = `${loc("filterHum")} (${humCount})`;
+      document.getElementById("filterEco").textContent = `${loc("filterEco")} (${ecoCount})`;
+    }
+
+    function renderAllQuestions() {
+      const container = document.getElementById("quizContainer");
+      container.innerHTML = "";
+
+      quiz.forEach(function (q) {
+        const block = document.createElement("div");
+        block.className = "question-block";
+        block.id = "q" + q.id;
+
+        let optionsHtml = "";
+        q.options.forEach(function (opt, idx) {
+          optionsHtml += `<button class="option" data-q="${q.id}" data-idx="${idx}" data-value="${escapeHtml(opt)}" onclick="handleAnswer(${q.id}, ${idx})">${escapeHtml(opt)}</button>`;
+        });
+
+        block.innerHTML = `
+          <div class="${topicClass(q.topic)}">${escapeHtml(topicLabel(q.topic))}, ${loc("p2Task")} ${q.task}</div>
+
+          <div class="q-part">
+            <span class="q-part-label">${escapeHtml(loc("qLabel1"))}</span>
+            <div class="q-text">${escapeHtml(q.text)}</div>
+          </div>
+
+          <div class="q-info">
+            <span class="q-part-label" style="color:#d8ccff;">${escapeHtml(loc("qLabel2"))}</span>
+            <p style="margin:0;">${escapeHtml(q.info)}</p>
+          </div>
+
+          <div class="q-part">
+            <span class="q-trainer-label">${escapeHtml(loc("qLabel3"))}</span>
+            <div class="options" id="options-${q.id}">${optionsHtml}</div>
+          </div>
+
+          <div id="result-${q.id}"></div>
+        `;
+
+        container.appendChild(block);
+      });
+
+      quiz.forEach(function (q) {
+        if (savedAnswers[q.id] !== undefined) {
+          applyAnswerVisual(q, savedAnswers[q.id]);
+          showResult(q, savedAnswers[q.id]);
+        }
+      });
+
+      updateFilterLabels();
+      updateStats();
+      updateSummary();
+      applyFilter();
+    }
+
+    function renderPart2() {
+      const container = document.getElementById("part2Container");
+      container.innerHTML = "";
+
+      part2Tasks.forEach(function (t) {
+        const card = document.createElement("article");
+        card.className = "manual-card";
+
+        card.innerHTML = `
+          <span class="tag red">${escapeHtml(loc("p2Tag"))}</span>
+          <h3>${escapeHtml(loc("p2Task"))} ${t.n}. ${escapeHtml(t.title)}</h3>
+          <p>${escapeHtml(t.text)}</p>
+          <p><strong>${escapeHtml(loc("p2Hint"))}</strong> ${escapeHtml(t.note)}</p>
+          <div class="check-input">
+            <label>${escapeHtml(loc("p2InputLbl"))}</label>
+            <input
+              type="text"
+              data-task="${t.n}"
+              value="${escapeHtml(manualNotes[t.n] || "")}"
+              placeholder="${escapeHtml(loc("p2Placeholder"))}"
+            />
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function handleAnswer(qId, selectedIdx) {
+      const q = quiz.find(function (item) { return item.id === qId; });
+      if (!q || savedAnswers[qId] !== undefined) return;
+
+      const selectedValue = q.options[selectedIdx];
+      savedAnswers[qId] = selectedValue;
+
+      applyAnswerVisual(q, selectedValue);
+      showResult(q, selectedValue);
+      updateStats();
+      updateSummary();
+    }
+
+    function applyAnswerVisual(q, selectedValue) {
+      const optionsBox = document.getElementById("options-" + q.id);
+      if (!optionsBox) return;
+
+      const correctValue = q.options[q.correct];
+      const buttons = optionsBox.querySelectorAll(".option");
+
+      buttons.forEach(function (btn) {
+        btn.disabled = true;
+        const value = btn.dataset.value;
+
+        if (value === correctValue) {
+          btn.classList.add("correct");
+        }
+
+        if (value === selectedValue && selectedValue !== correctValue) {
+          btn.classList.add("wrong");
+        }
+      });
+    }
+
+    function showResult(q, selectedValue) {
+      const resultBox = document.getElementById("result-" + q.id);
+      if (!resultBox) return;
+
+      const correctValue = q.options[q.correct];
+      const isCorrect = selectedValue === correctValue;
+
+      const resultClass = isCorrect ? "correct" : "wrong";
+      const verdictClass = isCorrect ? "correct" : "wrong";
+      const verdictText = isCorrect ? loc("resCorrect") : loc("resWrong");
+
+      resultBox.innerHTML = `
+        <div class="result-block ${resultClass}" role="status" aria-live="polite">
+          <div class="verdict ${verdictClass}">${escapeHtml(verdictText)}</div>
+          <div class="result-row"><strong>${escapeHtml(loc("resAns"))}</strong> ${escapeHtml(correctValue)}</div>
+          <div class="result-row"><strong>${escapeHtml(loc("resExp"))}</strong> ${escapeHtml(q.explanation)}</div>
+          <div class="source-row"><strong>${escapeHtml(loc("resSrc"))}</strong> ${escapeHtml(q.source)}</div>
+        </div>
+      `;
+    }
+
+    function getChecklistProgress() {
+      const total = checklistItemsData.length;
+      let done = 0;
+      checklistItemsData.forEach(function (item) {
+        if (checklistState[item.key]) done++;
+      });
+      return total ? Math.round((done / total) * 100) : 0;
+    }
+
+    function updateStats() {
+      const total = quiz.length;
+      let answered = 0;
+      let correct = 0;
+
+      quiz.forEach(function (q) {
+        const saved = savedAnswers[q.id];
+        if (typeof saved === "string" && q.options.includes(saved)) {
+          answered++;
+          if (saved === q.options[q.correct]) {
+            correct++;
+          }
+        }
+      });
+
+      document.getElementById("answeredCount").textContent = answered + "/" + total;
+      document.getElementById("correctCount").textContent = correct;
+      document.getElementById("checklistProgress").textContent = getChecklistProgress() + "%";
+      document.getElementById("overall").value = Math.round(((answered / total) * 100 + getChecklistProgress()) / 2);
+    }
+
+    function updateSummary() {
+      const summaryBox = document.getElementById("summaryBox");
+      const total = quiz.length;
+      let answered = 0;
+      let correct = 0;
+
+      quiz.forEach(function (q) {
+        const saved = savedAnswers[q.id];
+        if (typeof saved === "string" && q.options.includes(saved)) {
+          answered++;
+          if (saved === q.options[q.correct]) {
+            correct++;
+          }
+        }
+      });
+
+      if (answered < total) {
+        summaryBox.innerHTML = `
+          <div class="summary">
+            <p style="color:#9aa4c8;margin:0;">${escapeHtml(loc("sumDone"))} <strong>${answered}</strong> ${escapeHtml(loc("sumOf"))} ${total}</p>
+            <p style="color:#9aa4c8;margin:8px 0 0 0;">${escapeHtml(loc("sumCorr"))} <strong>${correct}</strong></p>
+            <p style="color:#9aa4c8;margin:8px 0 0 0;font-size:14px;">${escapeHtml(loc("sumFin"))}</p>
+          </div>
+        `;
+        return;
+      }
+
+      const percent = Math.round((correct / total) * 100);
+      let verdict = "";
+
+      if (percent >= 85) {
+        verdict = loc("verExc");
+      } else if (percent >= 60) {
+        verdict = loc("verGood");
+      } else {
+        verdict = loc("verNeed");
+      }
+
+      summaryBox.innerHTML = `
+        <div class="summary">
+          <div class="score">${correct}/${total}</div>
+          <p style="margin:8px 0;">${escapeHtml(verdict)}</p>
+          <p style="color:#9aa4c8;margin:0;">${escapeHtml(loc("sumCorr"))} ${percent}%</p>
+        </div>
+      `;
+    }
+
+    function resetAll() {
+      if (!confirm(loc("confReset"))) return;
+
+      savedAnswers = {};
+      manualNotes = {};
+      checklistState = {};
+
+      shuffleOptionsOnce();
+      renderAllSections();
+    }
+
+    function renderAllSections() {
+      prepareData();
+      renderStaticSections();
+      renderChecklist();
+      renderPlan();
+      renderAllQuestions();
+      renderPart2();
+    }
+
+    function copyPhone() {
+      const phone = "89202275676";
+      const status = document.getElementById("copyStatus");
+
+      const showCopied = function () {
+        status.textContent = loc("copied");
+        setTimeout(function () {
+          status.textContent = "";
+        }, 2500);
+      };
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(phone)
+          .then(showCopied)
+          .catch(function () {
+            fallbackCopy(phone, showCopied);
+          });
+      } else {
+        fallbackCopy(phone, showCopied);
+      }
+    }
+
+    function fallbackCopy(text, callback) {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+
+      try {
+        document.execCommand("copy");
+        callback();
+      } catch (e) {
+        alert(loc("errCopy") + text);
+      }
+
+      document.body.removeChild(textarea);
+    }
+
+    // ============================================================
+    // TIMER LOGIC
+    // ============================================================
+    let timerTotal = 210 * 60; // Default Biology 210 mins
+    let timerRemaining = timerTotal;
+    let timerInterval = null;
+    let timerRunning = false;
+
+    function formatTime(sec) {
+      const h = Math.floor(sec / 3600);
+      const m = Math.floor((sec % 3600) / 60);
+      const s = sec % 60;
+      return [h, m, s].map(function (v) { return String(v).padStart(2, "0"); }).join(":");
+    }
+
+    function updateTimerDisplay() {
+      const display = document.getElementById("timerDisplay");
+      const widget = document.getElementById("timerWidget");
+      display.textContent = formatTime(timerRemaining);
+      widget.classList.toggle("warning", timerRemaining <= 300 && timerRemaining > 60);
+      widget.classList.toggle("danger", timerRemaining <= 60);
+    }
+
+    function updateTimerButton() {
+      const btn = document.getElementById("timerToggle");
+      btn.textContent = timerRunning ? "⏸" : "▶";
+      btn.setAttribute("title", timerRunning ? loc("timerPause") : loc("timerStart"));
+      btn.setAttribute("aria-label", timerRunning ? loc("timerPause") : loc("timerStart"));
+    }
+
+    function stopTimer() {
+      timerRunning = false;
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = null;
+      updateTimerButton();
+    }
+
+    function startTimer() {
+      if (timerRunning || timerRemaining <= 0) return;
+      timerRunning = true;
+      timerInterval = setInterval(function () {
+        if (timerRemaining > 0) {
+          timerRemaining--;
+          updateTimerDisplay();
+        }
+        if (timerRemaining === 0) {
+          stopTimer();
+          alert(loc("timerUp"));
+        }
+      }, 1000);
+      updateTimerButton();
+    }
+
+    function toggleTimer() {
+      if (timerRunning) stopTimer();
+      else startTimer();
+    }
+
+    function resetTimer() {
+      stopTimer();
+      timerRemaining = timerTotal;
+      updateTimerDisplay();
+    }
+
+    function updateTimerLabels() {
+      const preset = document.getElementById("timerPreset");
+      const presets = [
+        { seconds: 210 * 60, key: "timerBio" },
+        { seconds: 60 * 60, key: "timerPractice" }
+      ];
+
+      preset.innerHTML = presets.map(function (p) {
+        return `<option value="${p.seconds}">${escapeHtml(loc(p.key))}</option>`;
+      }).join("");
+
+      // Try to keep selection if valid, otherwise default to Bio
+      const currentValue = parseInt(preset.value, 10);
+      if (!presets.some(p => p.seconds === currentValue)) {
+         preset.value = String(210 * 60);
+         timerTotal = 210 * 60;
+      } else {
+         timerTotal = currentValue;
+      }
+      
+      document.getElementById("timerReset").setAttribute("title", loc("timerReset"));
+      document.getElementById("timerReset").setAttribute("aria-label", loc("timerReset"));
+      updateTimerButton();
+      updateTimerDisplay();
+    }
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.querySelectorAll(".lang-option").forEach(function (sp) {
+        sp.classList.toggle("active", sp.dataset.lang === lang);
+      });
+      applyUIText();
+      renderAllSections();
+      updateTimerLabels();
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      localStorage.removeItem(STORAGE.answers);
+      localStorage.removeItem(STORAGE.checklist);
+      localStorage.removeItem(STORAGE.shuffle);
+      localStorage.removeItem(STORAGE.manual);
+
+      savedAnswers = {};
+      manualNotes = {};
+      checklistState = {};
+
+      shuffleOptionsOnce();
+      applyUIText();
+      renderAllSections();
+      updateTimerLabels();
+      updateTimerDisplay();
+
+      document.getElementById("langToggle").addEventListener("click", function () {
+        setLang(currentLang === "en" ? "ru" : "en");
+      });
+
+      document.getElementById("timerToggle").addEventListener("click", toggleTimer);
+      document.getElementById("timerReset").addEventListener("click", resetTimer);
+
+      document.getElementById("timerPreset").addEventListener("change", function (e) {
+        timerTotal = parseInt(e.target.value, 10);
+        resetTimer();
+      });
+
+      document.getElementById("checklistUl").addEventListener("change", function (e) {
+        if (e.target.matches("input[type='checkbox']")) {
+          const key = e.target.dataset.key;
+          checklistState[key] = e.target.checked;
+          const li = e.target.closest(".check-item");
+          if (li) li.classList.toggle("done", e.target.checked);
+          updateStats();
+        }
+      });
+
+      document.getElementById("part2Container").addEventListener("input", function (e) {
+        if (e.target.matches("input[data-task]")) {
+          manualNotes[e.target.dataset.task] = e.target.value;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

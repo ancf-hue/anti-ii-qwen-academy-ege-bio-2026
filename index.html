@@ -1493,7 +1493,7 @@
       { day: 25, critical: false, en: "Full practice test: Part 2 under time.", ru: "Полный пробник: часть 2 на время." }
     ];
 
-    // Quiz Data (English/Russian pairs)
+    // Quiz Data with Separate Options Arrays for RU and EN
     const quizRaw = [
       {
         id: 1, topic: "bot", task: 1,
@@ -1509,8 +1509,9 @@
           explanation: `Рентгеноструктурный анализ — это цитологический метод, позволяющий изучать структуру клетки и её компонентов на молекулярном уровне. Используется в цитологии.`,
           source: `Биология ЕГЭ-2026, задание 1`
         },
-        options: ["Cytology", "Microscopy", "Biochemistry", "Genetics"],
-        correct: 0
+        enOptions: ["Cytology", "Microscopy", "Biochemistry", "Genetics"],
+        ruOptions: ["Цитология", "Микроскопия", "Биохимия", "Генетика"],
+        correctIndex: 0 
       },
       {
         id: 2, topic: "bot", task: 2,
@@ -1526,8 +1527,9 @@
           explanation: `В тёмном шкафу фотосинтез не происходит, поэтому кислород не выделяется — его количество уменьшится (2). Азот не участвует в фотосинтезе, его количество не изменится (3).`,
           source: `Биология ЕГЭ-2026, задание 2`
         },
-        options: ["Oxygen: 2; Nitrogen: 3", "Oxygen: 1; Nitrogen: 2", "Oxygen: 3; Nitrogen: 1", "Oxygen: 2; Nitrogen: 2"],
-        correct: 0
+        enOptions: ["Oxygen: 2; Nitrogen: 3", "Oxygen: 1; Nitrogen: 2", "Oxygen: 3; Nitrogen: 1", "Oxygen: 2; Nitrogen: 2"],
+        ruOptions: ["Кислород: 2; Азот: 3", "Кислород: 1; Азот: 2", "Кислород: 3; Азот: 1", "Кислород: 2; Азот: 2"],
+        correctIndex: 0
       },
       {
         id: 3, topic: "zoo", task: 3,
@@ -1543,8 +1545,9 @@
           explanation: `В гамете кролика 21 аутосома + 1 половая хромосома = 22 хромосомы (n).`,
           source: `Биология ЕГЭ-2026, задание 3`
         },
-        options: ["22", "21", "42", "44"],
-        correct: 0
+        enOptions: ["22", "21", "42", "44"],
+        ruOptions: ["22", "21", "42", "44"],
+        correctIndex: 0
       },
       {
         id: 4, topic: "zoo", task: 4,
@@ -1560,8 +1563,9 @@
           explanation: `Анализирующее скрещивание гетерозиготы (Aa) с рецессивной гомозиготой (aa): Aa × aa → 1 Aa : 1 aa. Гомозиготное потомство (aa) составляет 50% = 0,5.`,
           source: `Биология ЕГЭ-2026, задание 4`
         },
-        options: ["0.5", "0.25", "0.75", "1"],
-        correct: 0
+        enOptions: ["0.5", "0.25", "0.75", "1"],
+        ruOptions: ["0,5", "0,25", "0,75", "1"],
+        correctIndex: 0
       },
       {
         id: 5, topic: "bot", task: 5,
@@ -1577,8 +1581,9 @@
           explanation: `На рисунке репликации ДНК нуклеотид обозначен цифрой 4 — это структурная единица ДНК, состоящая из азотистого основания, дезоксирибозы и фосфатной группы.`,
           source: `Биология ЕГЭ-2026, задание 5`
         },
-        options: ["4", "1", "2", "5"],
-        correct: 0
+        enOptions: ["4", "1", "2", "5"],
+        ruOptions: ["4", "1", "2", "5"],
+        correctIndex: 0
       },
       {
         id: 6, topic: "bot", task: 6,
@@ -1594,8 +1599,9 @@
           explanation: `Фермент 1 — ДНК-полимераза: может только продолжать цепь (А), соединяет нуклеотиды ДНК (Б). Фермент 2 — праймаза: соединяет рибонуклеотиды (В), синтезирует затравку-праймер (Д). Фермент 3 — хеликаза: расплетает цепи ДНК (Г), разрывает водородные связи (Е). Итого: 112323.`,
           source: `Биология ЕГЭ-2026, задание 6`
         },
-        options: ["112323", "121233", "123213", "113223"],
-        correct: 0
+        enOptions: ["112323", "121233", "123213", "113223"],
+        ruOptions: ["112323", "121233", "123213", "113223"],
+        correctIndex: 0
       },
       {
         id: 7, topic: "zoo", task: 7,
@@ -1611,8 +1617,9 @@
           explanation: `Основы комбинативной изменчивости: гаметогенез (4), кроссинговер (5) и оплодотворение (6). Эти процессы обеспечивают перекомбинацию генов.`,
           source: `Биология ЕГЭ-2026, задание 7`
         },
-        options: ["4, 5, 6", "1, 2, 3", "2, 3, 4", "1, 4, 6"],
-        correct: 0
+        enOptions: ["4, 5, 6", "1, 2, 3", "2, 3, 4", "1, 4, 6"],
+        ruOptions: ["4, 5, 6", "1, 2, 3", "2, 3, 4", "1, 4, 6"],
+        correctIndex: 0
       },
       {
         id: 8, topic: "bot", task: 8,
@@ -1628,8 +1635,9 @@
           explanation: `Последовательность: выделение экспланта (3) → рост недифференцированных клеток, образование каллуса (1) → перемещение каллуса на среду с гормонами (2) → органогенез (5) → получение проростка (4).`,
           source: `Биология ЕГЭ-2026, задание 8`
         },
-        options: ["3, 1, 2, 5, 4", "1, 2, 3, 4, 5", "3, 2, 1, 5, 4", "1, 3, 2, 4, 5"],
-        correct: 0
+        enOptions: ["3, 1, 2, 5, 4", "1, 2, 3, 4, 5", "3, 2, 1, 5, 4", "1, 3, 2, 4, 5"],
+        ruOptions: ["3, 1, 2, 5, 4", "1, 2, 3, 4, 5", "3, 2, 1, 5, 4", "1, 3, 2, 4, 5"],
+        correctIndex: 0
       },
       {
         id: 9, topic: "zoo", task: 9,
@@ -1645,8 +1653,9 @@
           explanation: `Четырёхкамерный желудок характерен для жвачных млекопитающих (коровы). На рисунке 6 изображена корова.`,
           source: `Биология ЕГЭ-2026, задание 9`
         },
-        options: ["6", "1", "2", "3"],
-        correct: 0
+        enOptions: ["6", "1", "2", "3"],
+        ruOptions: ["6", "1", "2", "3"],
+        correctIndex: 0
       },
       {
         id: 10, topic: "zoo", task: 10,
@@ -1662,8 +1671,9 @@
           explanation: `Плавательный пузырь (А) — у рыбы (1). Жаберные щели у взрослой особи (Б) — у амфибии (2). Постоянная температура тела (В) — у кита (3). Кожно-лёгочное дыхание (Г) — у амфибии (2). Шейный отдел (Д) — у амфибии (2). Вторичноводное животное (Е) — кит (3).`,
           source: `Биология ЕГЭ-2026, задание 10`
         },
-        options: ["A-1, B-2, C-3, D-2, E-2, F-3", "A-2, B-1, C-3, D-1, E-2, F-3", "A-1, B-3, C-2, D-3, E-1, F-2", "A-3, B-2, C-1, D-2, E-3, F-1"],
-        correct: 0
+        enOptions: ["A-1, B-2, C-3, D-2, E-2, F-3", "A-2, B-1, C-3, D-1, E-2, F-3", "A-1, B-3, C-2, D-3, E-1, F-2", "A-3, B-2, C-1, D-2, E-3, F-1"],
+        ruOptions: ["А-1, Б-2, В-3, Г-2, Д-2, Е-3", "А-2, Б-1, В-3, Г-1, Д-2, Е-3", "А-1, Б-3, В-2, Г-3, Д-1, Е-2", "А-3, Б-2, В-1, Г-2, Д-3, Е-1"],
+        correctIndex: 0
       },
       {
         id: 11, topic: "bot", task: 11,
@@ -1679,8 +1689,9 @@
           explanation: `Мхи и покрытосеменные содержат хлорофилл (2), имеют клеточное строение (3) и способны к фотосинтезу (4). Плоды и семена образуют только покрытосеменные.`,
           source: `Биология ЕГЭ-2026, задание 11`
         },
-        options: ["2, 3, 4", "1, 5, 6", "1, 2, 4", "3, 5, 6"],
-        correct: 0
+        enOptions: ["2, 3, 4", "1, 5, 6", "1, 2, 4", "3, 5, 6"],
+        ruOptions: ["2, 3, 4", "1, 5, 6", "1, 2, 4", "3, 5, 6"],
+        correctIndex: 0
       },
       {
         id: 12, topic: "bot", task: 12,
@@ -1696,8 +1707,9 @@
           explanation: `Последовательность от высшего к низшему: Царство Растения (5) → Отдел Покрытосеменные (4) → Класс Двудольные (6) → Семейство Розоцветные (3) → Род Шелковица (1) → Вид Шелковица чёрная (2).`,
           source: `Биология ЕГЭ-2026, задание 12`
         },
-        options: ["5, 4, 6, 3, 1, 2", "1, 2, 3, 4, 5, 6", "5, 4, 3, 6, 1, 2", "2, 1, 3, 6, 4, 5"],
-        correct: 0
+        enOptions: ["5, 4, 6, 3, 1, 2", "1, 2, 3, 4, 5, 6", "5, 4, 3, 6, 1, 2", "2, 1, 3, 6, 4, 5"],
+        ruOptions: ["5, 4, 6, 3, 1, 2", "1, 2, 3, 4, 5, 6", "5, 4, 3, 6, 1, 2", "2, 1, 3, 6, 4, 5"],
+        correctIndex: 0
       },
       {
         id: 13, topic: "hum", task: 13,
@@ -1713,8 +1725,9 @@
           explanation: `Склера — наружная плотная оболочка глаза. На рисунке она обозначена цифрой 5.`,
           source: `Биология ЕГЭ-2026, задание 13`
         },
-        options: ["5", "4", "6", "1"],
-        correct: 0
+        enOptions: ["5", "4", "6", "1"],
+        ruOptions: ["5", "4", "6", "1"],
+        correctIndex: 0
       },
       {
         id: 14, topic: "hum", task: 14,
@@ -1730,8 +1743,9 @@
           explanation: `Миопия (1): удлинение глазного яблока (А), фокусировка перед сетчаткой (Г), коррекция двояковогнутыми линзами (В). Гиперметропия (3): потеря эластичности хрусталика (Б), коррекция двояковыпуклыми линзами (Е). Астигматизм (2): неравномерная кривизна роговицы (Д).`,
           source: `Биология ЕГЭ-2026, задание 14`
         },
-        options: ["A-1, B-3, C-1, D-1, E-2, F-3", "A-2, B-1, C-3, D-2, E-1, F-2", "A-1, B-2, C-3, D-1, E-2, F-2", "A-3, B-1, C-2, D-3, E-1, F-1"],
-        correct: 0
+        enOptions: ["A-1, B-3, C-1, D-1, E-2, F-3", "A-2, B-1, C-3, D-2, E-1, F-2", "A-1, B-2, C-3, D-1, E-2, F-2", "A-3, B-1, C-2, D-3, E-1, F-1"],
+        ruOptions: ["А-1, Б-3, В-1, Г-1, Д-2, Е-3", "А-2, Б-1, В-3, Г-2, Д-1, Е-2", "А-1, Б-2, В-3, Г-1, Д-2, Е-2", "А-3, Б-1, В-2, Г-3, Д-1, Е-1"],
+        correctIndex: 0
       },
       {
         id: 15, topic: "hum", task: 15,
@@ -1747,8 +1761,9 @@
           explanation: `Вегетативная нервная система регулирует работу внутренних органов: сокращение гладкой мускулатуры сосудов (1), перистальтику кишечника (3), работу почек (5).`,
           source: `Биология ЕГЭ-2026, задание 15`
         },
-        options: ["1, 3, 5", "2, 4, 6", "1, 2, 4", "3, 4, 6"],
-        correct: 0
+        enOptions: ["1, 3, 5", "2, 4, 6", "1, 2, 4", "3, 4, 6"],
+        ruOptions: ["1, 3, 5", "2, 4, 6", "1, 2, 4", "3, 4, 6"],
+        correctIndex: 0
       },
       {
         id: 16, topic: "hum", task: 16,
@@ -1764,8 +1779,9 @@
           explanation: `От наибольшего к наименьшему: опорно-двигательная система (1) → скелет верхней конечности (5) → плечевой пояс (6) → ключица (2) → остеоцит (3) → ядро клетки (4).`,
           source: `Биология ЕГЭ-2026, задание 16`
         },
-        options: ["1, 5, 6, 2, 3, 4", "4, 3, 2, 6, 5, 1", "1, 6, 5, 2, 3, 4", "4, 3, 6, 2, 5, 1"],
-        correct: 0
+        enOptions: ["1, 5, 6, 2, 3, 4", "4, 3, 2, 6, 5, 1", "1, 6, 5, 2, 3, 4", "4, 3, 6, 2, 5, 1"],
+        ruOptions: ["1, 5, 6, 2, 3, 4", "4, 3, 2, 6, 5, 1", "1, 6, 5, 2, 3, 4", "4, 3, 6, 2, 5, 1"],
+        correctIndex: 0
       },
       {
         id: 17, topic: "zoo", task: 17,
@@ -1781,8 +1797,9 @@
           explanation: `Конвергенция — это независимое развитие сходных признаков у разных групп организмов в одинаковых условиях. Примеры: обтекаемое тело (2), увеличение миоглобина (4), подкожная жировая клетчатка (6).`,
           source: `Биология ЕГЭ-2026, задание 17`
         },
-        options: ["2, 4, 6", "1, 2, 3", "3, 4, 5", "1, 3, 5"],
-        correct: 0
+        enOptions: ["2, 4, 6", "1, 2, 3", "3, 4, 5", "1, 3, 5"],
+        ruOptions: ["2, 4, 6", "1, 2, 3", "3, 4, 5", "1, 3, 5"],
+        correctIndex: 0
       },
       {
         id: 18, topic: "eco", task: 18,
@@ -1798,8 +1815,9 @@
           explanation: `Схема 1 — пастбищная цепь (начинается с продуцентов). Схема 2 — детритная цепь разложения (начинается с опада). А-2, Б-2, В-1, Г-2, Д-1, Е-1.`,
           source: `Биология ЕГЭ-2026, задание 18`
         },
-        options: ["A-2, B-2, C-1, D-2, E-1, F-1", "A-1, B-1, C-2, D-1, E-2, F-2", "A-2, B-1, C-1, D-2, E-2, F-1", "A-1, B-2, C-2, D-1, E-1, F-2"],
-        correct: 0
+        enOptions: ["A-2, B-2, C-1, D-2, E-1, F-1", "A-1, B-1, C-2, D-1, E-2, F-2", "A-2, B-1, C-1, D-2, E-2, F-1", "A-1, B-2, C-2, D-1, E-1, F-2"],
+        ruOptions: ["А-2, Б-2, В-1, Г-2, Д-1, Е-1", "А-1, Б-1, В-2, Г-1, Д-2, Е-2", "А-2, Б-1, В-1, Г-2, Д-2, Е-1", "А-1, Б-2, В-2, Г-1, Д-1, Е-2"],
+        correctIndex: 0
       },
       {
         id: 19, topic: "eco", task: 19,
@@ -1815,8 +1833,9 @@
           explanation: `А — предупреждающая окраска (1). Б — подражание по окраске и форме незащищённого животного защищённому (8). В — зебра саванная и гепард (6) — примеры расчленяющей окраски.`,
           source: `Биология ЕГЭ-2026, задание 19`
         },
-        options: ["A-1, B-8, C-6", "A-1, B-7, C-5", "A-4, B-8, C-6", "A-7, B-3, C-2"],
-        correct: 0
+        enOptions: ["A-1, B-8, C-6", "A-1, B-7, C-5", "A-4, B-8, C-6", "A-7, B-3, C-2"],
+        ruOptions: ["А-1, Б-8, В-6", "А-1, Б-7, В-5", "А-4, Б-8, В-6", "А-7, Б-3, В-2"],
+        correctIndex: 0
       },
       {
         id: 20, topic: "eco", task: 20,
@@ -1832,8 +1851,9 @@
           explanation: `При 37 °С разница между штаммами меньше (1). Штамм К размножается быстрее при обеих температурах (4). Утверждения 2, 3, 5 не следуют из графиков.`,
           source: `Биология ЕГЭ-2026, задание 20`
         },
-        options: ["1, 4", "1, 2", "3, 5", "2, 4"],
-        correct: 0
+        enOptions: ["1, 4", "1, 2", "3, 5", "2, 4"],
+        ruOptions: ["1, 4", "1, 2", "3, 5", "2, 4"],
+        correctIndex: 0
       },
       {
         id: 21, topic: "eco", task: 21,
@@ -1849,8 +1869,9 @@
           explanation: `Для почвы характерны: отсутствие света (2), наличие пор с воздухом (4), увеличение плотности с глубиной (5).`,
           source: `Биология ЕГЭ-2026, задание 21`
         },
-        options: ["2, 4, 5", "1, 3, 6", "1, 2, 4", "3, 5, 6"],
-        correct: 0
+        enOptions: ["2, 4, 5", "1, 3, 6", "1, 2, 4", "3, 5, 6"],
+        ruOptions: ["2, 4, 5", "1, 3, 6", "1, 2, 4", "3, 5, 6"],
+        correctIndex: 0
       }
     ];
 
@@ -1943,7 +1964,7 @@
         ru: {
           title: "Генетическая задача",
           text: "На Х- и Y-хромосомах человека существуют псевдоаутосомные участки, которые содержат аллели одного гена, и между ними может происходить кроссинговер. Один из таких генов вызывает нарушения в развитии скелета. Рецессивный аллель одной из форм катаракты наследуется сцепленно с Х-хромосомой. Женщина, имеющая нарушения в развитии скелета и страдающая катарактой, родители которой имели нормально развитый скелет, вышла замуж за мужчину без этих заболеваний, мать которого страдала нарушениями в развитии скелета. Родившаяся в этом браке дочь без указанных заболеваний вышла замуж за мужчину, страдающего нарушениями в развитии скелета и не имеющего катаракты. Составьте схемы решения задачи. Определите генотипы родителей и генотипы, фенотипы, пол возможного потомства. Возможно ли рождение в первом браке ребёнка, страдающего двумя названными заболеваниями? Ответ поясните.",
-          note: "Обозначения: A — норма скелета, a — нарушения (псевдоаутосомный участок X и Y). B — норма зрения, b — катаракта (сцеплен с X). Генотип женщины: XᵃᵇXᵇ (больна обоими). Генотип мужчины: XᵃᴮYᴬ (здоров, мать больна скелетом). Схема первого брака даёт при кроссинговере сына XᵃᵇY — болен обоими. Ответ: ДА, возможно."
+          note: "Обозначения: A — норма скелета, a — нарушения (псевдоаутосомный участок X и Y). B — норма зрения, b — катаракта (сцеплен с X). Генотип женщины: XᵃᵇX (больна обоими). Генотип мужчины: XᵃᴮYᴬ (здоров, мать больна скелетом). Схема первого брака даёт при кроссинговере сына XᵃᵇY — болен обоими. Ответ: ДА, возможно."
         }
       }
     ];
@@ -1958,7 +1979,10 @@
         text: q[currentLang].text,
         info: q[currentLang].info,
         explanation: q[currentLang].explanation,
-        source: q[currentLang].source
+        source: q[currentLang].source,
+        // Select appropriate options array
+        options: currentLang === 'ru' ? [...q.ruOptions] : [...q.enOptions],
+        correct: q.correctIndex // Store original index to map later if needed
       }));
       
       part2Tasks = part2TasksRaw.map(t => ({
@@ -1973,10 +1997,12 @@
     // LOGIC FUNCTIONS
     // ============================================================
 
-    const QUIZ_ORIGINAL = quizRaw.map(function (q) {
+    // We store the ORIGINAL values to identify correctness after shuffle
+    const QUIZ_ORIGINAL_VALUES = quizRaw.map(function (q) {
+      // Get the correct option string from the respective language array
       return {
-        options: q.options.slice(),
-        correctValue: q.options[q.correct]
+        correctValueRu: q.ruOptions[q.correctIndex],
+        correctValueEn: q.enOptions[q.correctIndex]
       };
     });
 
@@ -2000,15 +2026,18 @@
       });
 
       quiz.forEach(function (q, i) {
-        const original = QUIZ_ORIGINAL[i];
-        const shuffled = seededShuffle(original.options, seed[i]);
+        // Determine correct value based on CURRENT LANG
+        const correctVal = currentLang === 'ru' 
+           ? QUIZ_ORIGINAL_VALUES[i].correctValueRu 
+           : QUIZ_ORIGINAL_VALUES[i].correctValueEn;
 
+        const shuffled = seededShuffle(q.options, seed[i]);
         q.options = shuffled;
-        q.correct = shuffled.indexOf(original.correctValue);
+        q.correct = shuffled.indexOf(correctVal);
       });
     }
 
-    let savedAnswers = {};
+    let savedAnswers = {}; // Stores SELECTED VALUE (string)
     let manualNotes = {};
     let checklistState = {};
     let currentFilter = "all";
@@ -2026,13 +2055,10 @@
         if (L[key] != null) el.innerHTML = L[key];
       });
       
-      // Update dynamic labels
       updateDynamicLabels();
     }
 
-    function updateDynamicLabels() {
-       // Handled inside render functions mostly, but ensuring static ones are updated
-    }
+    function updateDynamicLabels() {}
 
     function renderCard(card, index, containerId) {
       const container = document.getElementById(containerId);
@@ -2148,6 +2174,7 @@
 
         let optionsHtml = "";
         q.options.forEach(function (opt, idx) {
+          // opt is already localized string
           optionsHtml += `<button class="option" data-q="${q.id}" data-idx="${idx}" data-value="${escapeHtml(opt)}" onclick="handleAnswer(${q.id}, ${idx})">${escapeHtml(opt)}</button>`;
         });
 
@@ -2175,6 +2202,7 @@
         container.appendChild(block);
       });
 
+      // Restore visual state if answered
       quiz.forEach(function (q) {
         if (savedAnswers[q.id] !== undefined) {
           applyAnswerVisual(q, savedAnswers[q.id]);
@@ -2221,7 +2249,7 @@
       if (!q || savedAnswers[qId] !== undefined) return;
 
       const selectedValue = q.options[selectedIdx];
-      savedAnswers[qId] = selectedValue;
+      savedAnswers[qId] = selectedValue; // Save the TEXT VALUE
 
       applyAnswerVisual(q, selectedValue);
       showResult(q, selectedValue);
@@ -2485,7 +2513,6 @@
         return `<option value="${p.seconds}">${escapeHtml(loc(p.key))}</option>`;
       }).join("");
 
-      // Try to keep selection if valid, otherwise default to Bio
       const currentValue = parseInt(preset.value, 10);
       if (!presets.some(p => p.seconds === currentValue)) {
          preset.value = String(210 * 60);
